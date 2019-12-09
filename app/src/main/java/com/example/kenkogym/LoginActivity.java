@@ -1,15 +1,22 @@
 package com.example.kenkogym;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private  Activity activity = this;
+
+    private LoginViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
     }
 
     @Override

@@ -23,6 +23,46 @@ public class User {
         this.high=high;
     }
 
+    public enumUser getType() {
+        return type;
+    }
+
+    public void setType(enumUser type) {
+        this.type = type;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getHigh() {
+        return high;
+    }
+
+    public void setHigh(int high) {
+        this.high = high;
+    }
+
     public enumUser getTipo() {
         return type;
     }

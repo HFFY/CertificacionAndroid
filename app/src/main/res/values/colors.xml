@@ -4,4 +4,10 @@
     <color name="colorPatricksBlue">#224870</color>
     <color name="colorDazzledBlue">#2A4494</color>
     <color name="colorCarolineBlue">#4EA5D9</color>
+
+    <color name="colorPrimary">#224870</color>
+    <color name="colorPrimaryDark">#2A4494</color>
+    <color name="colorAccent">#4EA5D9</color>
+
+
 </resources>

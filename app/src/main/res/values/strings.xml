@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">KenkoGym</string>
 
-    <string name="Correo">Correa</string>
-    <string name="Contrasena">Contrasena</string>
+    <string name="login_user">Usuario</string>
+    <string name="login_psswd">Contrasena</string>
 
 
 </resources>

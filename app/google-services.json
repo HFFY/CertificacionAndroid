@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1043714917488",
+    "firebase_url": "https://kenkogym-7f67e.firebaseio.com",
+    "project_id": "kenkogym-7f67e",
+    "storage_bucket": "kenkogym-7f67e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1043714917488:android:6d45ddff5a59cf79f820b5",
+        "android_client_info": {
+          "package_name": "com.example.kenkogym"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1043714917488-kp40v7qmtvh06fm705jqgcjnuit56grg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kenkogym",
+            "certificate_hash": "baf20465f8441b8c6b02b16311ea3f83e0795652"
+          }
+        },
+        {
+          "client_id": "1043714917488-9edqb6jltiviufavonvlimig43i8811f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaqadbtBYb4pO5HMLJDGTm2ldzuW1LT6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1043714917488-9edqb6jltiviufavonvlimig43i8811f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

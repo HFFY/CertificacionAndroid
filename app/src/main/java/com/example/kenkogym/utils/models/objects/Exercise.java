@@ -1,4 +1,4 @@
-package com.example.kenkogym.utils.models.Repository;
+package com.example.kenkogym.utils.models.objects;
 
 import com.example.kenkogym.utils.models.types.enumExercise;
 

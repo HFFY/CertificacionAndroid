@@ -1,18 +1,14 @@
 package com.example.kenkogym.login.viewModel;
 
-import android.app.Activity;
-import android.app.Application;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.kenkogym.repositoy.Repository;
 import com.example.kenkogym.utils.ResponseMapper;
 import com.example.kenkogym.utils.models.Base;
-import com.example.kenkogym.utils.models.Repository.User;
+import com.example.kenkogym.utils.models.objects.User;
 import com.example.kenkogym.utils.models.ui.userLogged;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 public class LoginViewModel  extends ViewModel {
 

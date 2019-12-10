@@ -1,6 +1,6 @@
 package com.example.kenkogym.utils;
 
-import com.example.kenkogym.utils.models.Repository.User;
+import com.example.kenkogym.utils.models.objects.User;
 
 import java.util.ArrayList;
 import java.util.List;

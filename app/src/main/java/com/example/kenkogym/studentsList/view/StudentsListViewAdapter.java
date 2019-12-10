@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.kenkogym.R;
-import com.example.kenkogym.utils.models.Repository.User;
+import com.example.kenkogym.utils.models.objects.User;
 
 import java.util.List;
 

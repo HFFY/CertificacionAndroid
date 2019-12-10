@@ -2,7 +2,8 @@ package com.example.kenkogym.repositoy;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.kenkogym.models.Base;
+import com.example.kenkogym.utils.RepositoryImpl;
+import com.example.kenkogym.utils.models.Base;
 
 public class Repository implements RepositoryImpl {
 

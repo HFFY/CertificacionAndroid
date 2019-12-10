@@ -1,8 +1,6 @@
 package com.example.kenkogym.utils;
 
-import com.example.kenkogym.R;
-import com.example.kenkogym.models.Repository.User;
-import com.example.kenkogym.models.types.enumUser;
+import com.example.kenkogym.utils.models.Repository.User;
 
 import java.util.ArrayList;
 import java.util.List;

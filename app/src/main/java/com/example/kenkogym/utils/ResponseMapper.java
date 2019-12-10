@@ -1,9 +1,8 @@
 package com.example.kenkogym.utils;
 
-import com.example.kenkogym.Constants;
-import com.example.kenkogym.models.Repository.User;
-import com.example.kenkogym.models.types.enumUser;
-import com.example.kenkogym.models.ui.userLogged;
+import com.example.kenkogym.utils.models.Repository.User;
+import com.example.kenkogym.utils.models.types.enumUser;
+import com.example.kenkogym.utils.models.ui.userLogged;
 
 public class ResponseMapper {
 

@@ -33,4 +33,5 @@ public class LoginRepository  implements RepositoryImpl {
     public LiveData<Base> getRouteDetails(String uuid) {
         return null;
     }
+
 }

@@ -40,5 +40,15 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.google.firebase:firebase-database:19.2.0'
 
+
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-database:19.2.0'
+
 }
 apply plugin: 'com.google.gms.google-services'
+
+

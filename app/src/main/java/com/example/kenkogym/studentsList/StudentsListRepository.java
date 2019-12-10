@@ -26,7 +26,7 @@ public class StudentsListRepository implements RepositoryUserImpl {
 
     @Override
     public LiveData<Base> getUser() {
-        return ApiRepository.getInstance().getRoutes();
+        return ApiRepository.getInstance().getUsers();
     }
 
     @Override

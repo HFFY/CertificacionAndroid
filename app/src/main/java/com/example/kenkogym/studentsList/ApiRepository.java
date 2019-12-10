@@ -29,7 +29,7 @@ public class ApiRepository {
         usersAPI = ApiService.createService(UsersApi.class);
     }
 
-    public LiveData<Base> getRoutes() {
+    public LiveData<Base> getUsers() {
         final MutableLiveData<Base> results = new MutableLiveData<>();
 
         usersAPI.getUsers(Constants.API_PARAM_ALT)

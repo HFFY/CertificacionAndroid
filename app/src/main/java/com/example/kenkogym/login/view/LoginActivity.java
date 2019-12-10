@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         Log.e(LOG, "creado");
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
@@ -81,37 +80,42 @@ public class LoginActivity extends AppCompatActivity {
                 if (!email.isEmpty() && !password.isEmpty()) {
                     if (!email.contains("@")) {
                         emailEditText.setError(getString(R.string.login_invalid_email));
-                    }
+                        Toast.makeText(context,
+                                "Correo Incorrecto",
+                                Toast.LENGTH_SHORT)
+                                .show();
+                    } else {
 
-                    //new LongLogin().execute(new UserAux(email, password));
-                    showLoading();
-                    LiveData<Base> result = viewModel.login(email, password);
-                    result.observe(LoginActivity.this, new Observer<Base>() {
-                        @Override
-                        public void onChanged(Base base) {
-                            if (base.isSuccess()) {
-                                userLogged userLogged = (userLogged) base.getData();
-                                //String json = new Gson().toJson(userLogged);
+                        //new LongLogin().execute(new UserAux(email, password));
+                        showLoading();
+                        LiveData<Base> result = viewModel.login(email, password);
+                        result.observe(LoginActivity.this, new Observer<Base>() {
+                            @Override
+                            public void onChanged(Base base) {
+                                if (base.isSuccess()) {
+                                    userLogged userLogged = (userLogged) base.getData();
+                                    //String json = new Gson().toJson(userLogged);
 
-                                Toast.makeText(context,
-                                        getString(R.string.login_welcome, userLogged.getEmail()),
-                                        Toast.LENGTH_SHORT)
-                                        .show();
+                                    Toast.makeText(context,
+                                            getString(R.string.login_welcome, userLogged.getEmail()),
+                                            Toast.LENGTH_SHORT)
+                                            .show();
 
-                                Intent intent = new Intent(context, MainActivity.class);
-                                //intent.putExtra(Constants.INTENT_KEY_USER_LOGGED, json);
-                                startActivity(intent);
+                                    Intent intent = new Intent(context, MainActivity.class);
+                                    //intent.putExtra(Constants.INTENT_KEY_USER_LOGGED, json);
+                                    startActivity(intent);
 
-                                //executeLongAction();
+                                    //executeLongAction();
 
-                            } else {
-                                Toast.makeText(context,
-                                        base.getMessage(),
-                                        Toast.LENGTH_SHORT)
-                                        .show();
+                                } else {
+                                    Toast.makeText(context,
+                                            base.getMessage(),
+                                            Toast.LENGTH_SHORT)
+                                            .show();
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 } else {
                     Toast.makeText(context,
                             R.string.login_empty,

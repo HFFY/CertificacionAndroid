@@ -4,19 +4,17 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.kenkogym.repositoy.Repository;
+import com.example.kenkogym.login.LoginRepository;
 import com.example.kenkogym.utils.ResponseMapper;
 import com.example.kenkogym.utils.models.Base;
 import com.example.kenkogym.utils.models.objects.User;
-import com.example.kenkogym.utils.models.ui.userLogged;
+import com.example.kenkogym.utils.models.userLogged;
 
 public class LoginViewModel  extends ViewModel {
 
-    private Repository repository;
+    private LoginRepository repository;
 
-    public LoginViewModel() {
-        repository = Repository.getInstance();
-    }
+    public LoginViewModel() {repository = LoginRepository.getInstance();}
 
     public LiveData<Base> login(final String email, final String password) {
         final MutableLiveData<Base> result = new MutableLiveData<>();
@@ -38,5 +36,6 @@ public class LoginViewModel  extends ViewModel {
         }).start();
         return result;
     }
+
 
 }

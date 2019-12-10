@@ -13,6 +13,10 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface UsersApi {
+    /**
+     * @param alt
+     * @return
+     */
     @GET("Api%2Fusers.json")
     Call<List<User>> getUsers(@Query("alt") String alt);
 

@@ -36,6 +36,7 @@ public class ApiRepository {
                 .enqueue(new Callback<List<User>>() {
                     @Override
                     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+
                         if (response.isSuccessful()) {
                             results.postValue(new Base(response.body()));
                         } else {

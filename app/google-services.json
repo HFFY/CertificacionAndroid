@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1043714917488-uupngjlp8vqr8ndmoill1anjble2inkv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kenkogym",
+            "certificate_hash": "b414f14406ffaee9fcde1ea54de7f33405447559"
+          }
+        },
+        {
           "client_id": "1043714917488-kp40v7qmtvh06fm705jqgcjnuit56grg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

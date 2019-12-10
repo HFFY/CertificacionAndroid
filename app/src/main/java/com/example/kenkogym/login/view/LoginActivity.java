@@ -20,7 +20,7 @@ import com.example.kenkogym.R;
 import com.example.kenkogym.login.viewModel.LoginViewModel;
 import com.example.kenkogym.main.view.MainActivity;
 import com.example.kenkogym.utils.models.Base;
-import com.example.kenkogym.utils.models.ui.userLogged;
+import com.example.kenkogym.utils.models.userLogged;
 //import com.google.gson.Gson;
 
 public class LoginActivity extends AppCompatActivity {
@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Log.e(LOG, "creado");
-//        viewModel = new ViewModelProvider().get(LoginViewModel.class);
+        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
         this.context = this;
         initUI();

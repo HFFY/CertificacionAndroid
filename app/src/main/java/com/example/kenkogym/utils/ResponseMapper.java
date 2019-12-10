@@ -2,7 +2,7 @@ package com.example.kenkogym.utils;
 
 import com.example.kenkogym.utils.models.Repository.User;
 import com.example.kenkogym.utils.models.types.enumUser;
-import com.example.kenkogym.utils.models.ui.userLogged;
+import com.example.kenkogym.utils.models.userLogged;
 
 public class ResponseMapper {
 

@@ -1,4 +1,4 @@
-package com.example.kenkogym.utils.models.ui;
+package com.example.kenkogym.utils.models;
 
 import com.example.kenkogym.utils.models.types.enumUser;
 

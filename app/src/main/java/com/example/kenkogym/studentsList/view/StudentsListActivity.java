@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kenkogym.R;
 import com.example.kenkogym.main.view.MainActivity;
-import com.example.kenkogym.utils.models.Repository.User;
+import com.example.kenkogym.utils.models.objects.User;
 import com.example.kenkogym.utils.UserUtils;
 //import com.google.gson.Gson;
 

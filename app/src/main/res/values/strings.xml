@@ -8,5 +8,9 @@
     <string name="login_welcome">Bienvenido: %s </string>
     <string name="login_empty">Complete los datos requeridos </string>
 
+    <string name="user_profile_weight">Peso</string>
+    <string name="user_profile_height">Altura</string>
+    <string name="user_profile_age">Edad</string>
+
 
 </resources>

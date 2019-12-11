@@ -4,19 +4,24 @@ import android.os.Bundle;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kenkogym.R;
-import com.example.kenkogym.utils.models.objects.User;
+import com.example.kenkogym.studentsList.viewModel.StudentsListViewModel;
 import com.example.kenkogym.utils.UserUtils;
-//import com.google.gson.Gson;
+import com.example.kenkogym.utils.models.objects.User;
 
+import java.util.ArrayList;
 import java.util.List;
+
+//import com.google.gson.Gson;
 
 public class StudentsListActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private RecyclerView recyclerView;
+    private StudentsListViewModel studentsListViewModel;
     //private Gson gson = new Gson();
 
     @Override
@@ -44,5 +49,9 @@ public class StudentsListActivity extends AppCompatActivity {
 
     private void initToolbar() {
 
+    }
+    private ArrayList<Object> getUsers(){
+        studentsListViewModel = new ViewModelProvider(this).get(StudentsListViewModel.class);
+        return studentsListViewModel.getUsers();
     }
 }

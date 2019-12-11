@@ -21,7 +21,6 @@ import com.example.kenkogym.login.viewModel.LoginViewModel;
 import com.example.kenkogym.main.view.MainActivity;
 import com.example.kenkogym.utils.models.Base;
 import com.example.kenkogym.utils.models.userLogged;
-//import com.google.gson.Gson;
 
 public class LoginActivity extends AppCompatActivity {
 

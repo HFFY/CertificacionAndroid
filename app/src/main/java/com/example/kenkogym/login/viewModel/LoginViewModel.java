@@ -1,14 +1,12 @@
 package com.example.kenkogym.login.viewModel;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 
 import com.example.kenkogym.login.FirebaseRepository;
 import com.example.kenkogym.utils.ResponseMapper;
@@ -39,23 +37,7 @@ public class LoginViewModel  extends AndroidViewModel {
                 }
             }
         });
-        /*
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                    User user = new User();
-                    user.setuId("1");
-                    user.setEmail(email);
 
-                    userLogged userLogged = ResponseMapper.mapUserToUserLooged(user);
-                    result.postValue(new Base(userLogged));
-                } catch (InterruptedException ex) {
-                    result.postValue(new Base("Interrupted", ex));
-                }
-            }
-        }).start();*/
         return result;
     }
 

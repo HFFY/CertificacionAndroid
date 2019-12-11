@@ -3,7 +3,6 @@ package com.example.kenkogym.login;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-;
 import com.example.kenkogym.utils.models.Base;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

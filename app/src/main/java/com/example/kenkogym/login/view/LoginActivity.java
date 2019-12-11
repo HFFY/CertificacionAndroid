@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.kenkogym.R;
 import com.example.kenkogym.login.viewModel.LoginViewModel;
 import com.example.kenkogym.main.view.MainActivity;
+import com.example.kenkogym.userCreation.view.UserCreationActivity;
 import com.example.kenkogym.utils.models.Base;
 import com.example.kenkogym.utils.models.userLogged;
 
@@ -67,14 +68,22 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initEvents() {
+        this.registerText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Registro","Click");
+                Intent intent = new Intent(context, UserCreationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         this.sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Log.e(LOG, "Click en boton");
                 final String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
-                Log.e(LOG, "email" + email);
 
                 if (!email.isEmpty() && !password.isEmpty()) {
                     if (!email.contains("@")) {

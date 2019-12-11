@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kenkogym.R;
+import com.example.kenkogym.utils.models.objects.User;
 
 import java.util.List;
 
@@ -12,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class StudentsListViewAdapter extends RecyclerView.Adapter<StudentsListViewAdapter.ViewHolder> {
 
-        private List<String> userModelList;
+        private List<User> userModelList;
 
-        public StudentsListViewAdapter(List<String> userModelList) {
+        public StudentsListViewAdapter(List<User> userModelList) {
             this.userModelList = userModelList;
         }
 

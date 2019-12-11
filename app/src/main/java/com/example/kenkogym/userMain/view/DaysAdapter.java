@@ -1,32 +1,33 @@
-package com.example.kenkogym.studentsList.view;
+package com.example.kenkogym.userMain.view;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kenkogym.R;
+import com.example.kenkogym.studentsList.view.StudentsListViewAdapter;
 
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public class StudentsListViewAdapter extends RecyclerView.Adapter<StudentsListViewAdapter.ViewHolder> {
+public class DaysAdapter extends RecyclerView.Adapter<StudentsListViewAdapter.ViewHolder> {
 
         private List<String> userModelList;
 
-        public StudentsListViewAdapter(List<String> userModelList) {
+        public DaysAdapter(List<String> userModelList) {
             this.userModelList = userModelList;
         }
 
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.student_list_item, parent, false);
-            ViewHolder viewHolder = new ViewHolder(v);
+        public StudentsListViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.days_item, parent, false);
+            StudentsListViewAdapter.ViewHolder viewHolder = new StudentsListViewAdapter.ViewHolder(v);
             return viewHolder;
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(StudentsListViewAdapter.ViewHolder holder, int position) {
         }
 
         @Override

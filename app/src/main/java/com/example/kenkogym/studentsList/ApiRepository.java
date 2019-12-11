@@ -1,22 +1,20 @@
 package com.example.kenkogym.studentsList;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import androidx.annotation.NonNull;
 
-import com.example.kenkogym.utils.Constants;
-import com.example.kenkogym.utils.models.Base;
-import com.example.kenkogym.utils.models.objects.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.ArrayList;
 
 public class ApiRepository {
 
     private UsersApi usersAPI;
     private static ApiRepository instance;
+    public static ArrayList<Object> value;
 
     public static ApiRepository getInstance() {
         if (instance == null) {
@@ -29,27 +27,25 @@ public class ApiRepository {
         usersAPI = ApiService.createService(UsersApi.class);
     }
 
-    public LiveData<Base> getUsers() {
-        final MutableLiveData<Base> results = new MutableLiveData<>();
+    public ArrayList<Object> getUsers() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users");
 
-        usersAPI.getUsers(Constants.API_PARAM_ALT)
-                .enqueue(new Callback<List<User>>() {
-                    @Override
-                    public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                value = (ArrayList<Object>) dataSnapshot.getValue();
 
-                        if (response.isSuccessful()) {
-                            results.postValue(new Base(response.body()));
-                        } else {
-                            results.postValue(new Base(response.message(), new NullPointerException()));
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(Call<List<User>> call, Throwable t) {
-                        results.postValue(new Base("onFailure", new Exception(t)));
-                    }
-                });
+            }
 
-        return results;
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Failed to read value
+
+            }
+        });
+
+        return value;
     }
 }

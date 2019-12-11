@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData;
 
 import com.example.kenkogym.utils.models.Base;
 
+import java.util.ArrayList;
+
 public class StudentsListRepository implements RepositoryUserImpl {
 
     private static StudentsListRepository instance;
@@ -24,12 +26,12 @@ public class StudentsListRepository implements RepositoryUserImpl {
 //    }
 
     @Override
-    public LiveData<Base> getUser() {
+    public ArrayList<Object> getUsers() {
         return ApiRepository.getInstance().getUsers();
     }
 
     @Override
     public LiveData<Base> getUserDetails(String uuid) {
-        return ApiRepository.getInstance().getUsers();
+        return null;
     }
 }

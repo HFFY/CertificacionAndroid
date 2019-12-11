@@ -41,9 +41,7 @@ public class User {
         this.heigh=heigh;
     }
 
-    public User(){
 
-    }
     public String getuId() {return uId;}
 
     public void setuId(String uId) {this.uId = uId;}

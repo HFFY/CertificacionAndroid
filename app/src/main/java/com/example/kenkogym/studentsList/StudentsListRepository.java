@@ -2,7 +2,6 @@ package com.example.kenkogym.studentsList;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.kenkogym.utils.FireBaseRepository;
 import com.example.kenkogym.utils.models.Base;
 
 public class StudentsListRepository implements RepositoryUserImpl {
@@ -19,10 +18,10 @@ public class StudentsListRepository implements RepositoryUserImpl {
     private StudentsListRepository() {
     }
 
-    @Override
-    public LiveData<Base> login(String email, String password) {
-        return FireBaseRepository.getInstance().login(email, password);
-    }
+//    @Override
+//    public LiveData<Base> login(String email, String password) {
+//        return FireBaseRepository.getInstance().login(email, password);
+//    }
 
     @Override
     public LiveData<Base> getUser() {
@@ -31,6 +30,6 @@ public class StudentsListRepository implements RepositoryUserImpl {
 
     @Override
     public LiveData<Base> getUserDetails(String uuid) {
-        return null;
+        return ApiRepository.getInstance().getUsers();
     }
 }

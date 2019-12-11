@@ -17,7 +17,7 @@ public class User {
     private int image;
     private int age;
     private int weight;
-    private int high;
+    private int heigh;
 
 
     /**
@@ -29,7 +29,7 @@ public class User {
      * <p>
      * En ese caso deberiamos crear otra clase solo para el login donde tendriamos solo Email, Password que busque un id y compare
      **/
-    public User(String id, enumUser type, String name,String email, String password, int image, int age, int weight, int high){
+    public User(String id, enumUser type, String name,String email, String password, int image, int age, int weight, int heigh){
         this.uId=id;
         this.type=type;
         this.name=name;
@@ -38,7 +38,7 @@ public class User {
         this.image=image;
         this.age=age;
         this.weight=weight;
-        this.high=high;
+        this.heigh=heigh;
     }
 
     public User(){
@@ -85,11 +85,11 @@ public class User {
     }
 
     public int getHigh() {
-        return high;
+        return heigh;
     }
 
     public void setHigh(int high) {
-        this.high = high;
+        this.heigh = high;
     }
 
     public enumUser getTipo() {

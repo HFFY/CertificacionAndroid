@@ -48,9 +48,15 @@ public class FirebaseRepository  {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         results.postValue(new Base("login.onFailure", e));
-                        //register(email,password);
+                        register(email,password);
                     }
                 });
+        return results;
+    }
+
+    public LiveData<Base> register(String email, String password) {
+        final MutableLiveData<Base> results = new MutableLiveData<>();
+        this.auth.createUserWithEmailAndPassword(email, password);
         return results;
     }
 

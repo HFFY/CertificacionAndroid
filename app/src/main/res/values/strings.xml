@@ -2,7 +2,9 @@
     <string name="app_name">KenkoGym</string>
 
     <string name="login_user">Usuario</string>
+    <string name="login_email">Correo Electronico</string>
     <string name="login_psswd">Contrasena</string>
+    <string name="login_psswd_confir">Confirme Contrasena</string>
 
     <string name="login_invalid_email">Correo electronico invalido</string>
     <string name="login_welcome">Bienvenido: %s </string>

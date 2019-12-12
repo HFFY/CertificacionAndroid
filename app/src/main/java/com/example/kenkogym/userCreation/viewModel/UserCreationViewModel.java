@@ -1,9 +1,16 @@
 package com.example.kenkogym.userCreation.viewModel;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.example.kenkogym.userCreation.UserCreationRepository;
+import com.example.kenkogym.utils.ResponseMapper;
+import com.example.kenkogym.utils.models.Base;
 import com.example.kenkogym.utils.models.objects.User;
+import com.example.kenkogym.utils.models.userLogged;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -14,9 +21,24 @@ public class UserCreationViewModel extends ViewModel {
     public UserCreationViewModel() {repository = UserCreationRepository.getInstance();}
 
 
-    public ArrayList<Object> createUser(User newUser){
+    public LiveData<Base> createUser(String user, String email, String passwod){
+        final MutableLiveData<Base> result = new MutableLiveData<>();
 
-        return repository.sendUser(newUser);
+        repository.register(email, passwod).observeForever(new Observer<Base>() {
+            @Override
+            public void onChanged(Base base) {
+                if (base.isSuccess()) {
+                    FirebaseUser user = (FirebaseUser) base.getData();
+                    userLogged userLogged = ResponseMapper.mapUserToUserLooged(user);
+                    result.postValue(new Base(userLogged));
+                } else {
+                    result.postValue(base);
+                }
+            }
+        });
+
+        return result;
+
     }
 
 }

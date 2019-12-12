@@ -30,7 +30,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
-        android:text="@string/login_psswd" />
+        android:text="@string/login_email" />
 
     <EditText
         android:id="@+id/edit_creation_email"
@@ -66,7 +66,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
-        android:text="@string/login_psswd" />
+        android:text="@string/login_psswd_confir" />
 
     <EditText
         android:id="@+id/edit_creation_password_confirmation"

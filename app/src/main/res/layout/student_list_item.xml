@@ -13,7 +13,7 @@
         android:padding="15dp">
 
         <ImageView
-            android:id="@+id/imageViewPokemon"
+            android:id="@+id/image_profile_icon"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:scaleType="centerInside"
@@ -26,7 +26,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewName"
+                android:id="@+id/text_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -35,7 +35,7 @@
                 tools:text="User Name Example" />
 
             <TextView
-                android:id="@+id/textViewType"
+                android:id="@+id/text_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"

@@ -20,6 +20,7 @@ import com.example.kenkogym.R;
 import com.example.kenkogym.login.viewModel.LoginViewModel;
 import com.example.kenkogym.main.view.MainActivity;
 import com.example.kenkogym.userCreation.view.UserCreationActivity;
+import com.example.kenkogym.userMain.view.UserMainActivity;
 import com.example.kenkogym.utils.models.Base;
 import com.example.kenkogym.utils.models.userLogged;
 
@@ -100,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                         result.observe(LoginActivity.this, new Observer<Base>() {
                             @Override
                             public void onChanged(Base base) {
+                                hideLoading();
                                 if (base.isSuccess()) {
                                     userLogged userLogged = (userLogged) base.getData();
                                     //String json = new Gson().toJson(userLogged);
@@ -109,11 +111,8 @@ public class LoginActivity extends AppCompatActivity {
                                             Toast.LENGTH_SHORT)
                                             .show();
 
-                                    Intent intent = new Intent(context, MainActivity.class);
-                                    //intent.putExtra(Constants.INTENT_KEY_USER_LOGGED, json);
+                                    Intent intent = new Intent(context, UserMainActivity.class);
                                     startActivity(intent);
-
-                                    //executeLongAction();
 
                                 } else {
                                     Toast.makeText(context,
@@ -141,5 +140,9 @@ public class LoginActivity extends AppCompatActivity {
         loadingDialog.setMax(100);
         loadingDialog.setProgress(0);
         loadingDialog.show();
+    }
+
+    private void hideLoading(){
+        loadingDialog.cancel();
     }
 }

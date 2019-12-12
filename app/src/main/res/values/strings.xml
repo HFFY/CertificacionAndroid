@@ -2,9 +2,11 @@
     <string name="app_name">KenkoGym</string>
 
     <string name="login_user">Usuario</string>
-    <string name="login_email">Correo Electronico</string>
+    <string name="login_email">Correo Electrónico</string>
     <string name="login_psswd">Contrasena</string>
     <string name="login_psswd_confir">Confirme Contrasena</string>
+    <string name="login_button">Ingresar</string>
+    <string name="login_register">Resgistrate</string>
 
     <string name="login_invalid_email">Correo electronico invalido</string>
     <string name="login_welcome">Bienvenido: %s </string>
@@ -13,6 +15,8 @@
     <string name="user_profile_weight">Peso</string>
     <string name="user_profile_height">Altura</string>
     <string name="user_profile_age">Edad</string>
+
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
 
 
 </resources>

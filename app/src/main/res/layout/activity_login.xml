@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_user"
+        android:text="@string/login_email"
         android:layout_marginLeft="25dp" />
 
     <EditText
@@ -21,9 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
-        android:hint="@string/login_user"
+        android:hint="@string/login_email"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="textEmailAddress" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,14 +64,14 @@
             android:gravity="start"
             android:layout_weight="1"
             android:visibility="invisible"
-            android:text="TextView" />
+            android:text="@string/login_register" />
 
         <Button
             android:id="@+id/button_login_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="@string/login_button" />
     </LinearLayout>
 
 </LinearLayout>

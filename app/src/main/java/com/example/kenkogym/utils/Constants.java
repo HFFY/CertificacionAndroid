@@ -10,4 +10,7 @@ public class Constants {
     public static final String API_HOST = "https://firebasestorage.googleapis.com/v0/b/kenkogym-7f67e.appspot.com/o/";
     public static final String API_PARAM_ALT = "media";
     public static final String API_HEADER_ACCEPT = "application/json";
+
+    public static final String KEY_FRAGMENT_PROFILE = "profileFragment";
+    public static final String KEY_FRAGMENT_DAYS = "daysFragment";
 }

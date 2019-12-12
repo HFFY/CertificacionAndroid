@@ -4,15 +4,16 @@ import android.os.Bundle;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kenkogym.R;
 import com.example.kenkogym.studentsList.viewModel.StudentsListViewModel;
 import com.example.kenkogym.utils.UserUtils;
+import com.example.kenkogym.utils.models.Base;
 import com.example.kenkogym.utils.models.objects.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //import com.google.gson.Gson;
@@ -50,7 +51,7 @@ public class StudentsListActivity extends AppCompatActivity {
     private void initToolbar() {
 
     }
-    private ArrayList<Object> getUsers(){
+    private LiveData<Base> getUsers(){
         studentsListViewModel = new ViewModelProvider(this).get(StudentsListViewModel.class);
         return studentsListViewModel.getUsers();
     }

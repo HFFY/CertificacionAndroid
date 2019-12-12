@@ -1,20 +1,24 @@
 package com.example.kenkogym.studentsList;
 
-import androidx.annotation.NonNull;
+import android.util.Log;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
+import com.example.kenkogym.utils.Constants;
+import com.example.kenkogym.utils.models.Base;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ApiRepository {
 
     private UsersApi usersAPI;
     private static ApiRepository instance;
-    public static ArrayList<Object> value;
+
 
     public static ApiRepository getInstance() {
         if (instance == null) {
@@ -27,25 +31,29 @@ public class ApiRepository {
         usersAPI = ApiService.createService(UsersApi.class);
     }
 
-    public ArrayList<Object> getUsers() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users");
+    public LiveData<Base> getUsers() {
+        final MutableLiveData<Base> results = new MutableLiveData<>();
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                value = (ArrayList<Object>) dataSnapshot.getValue();
+        usersAPI.getUsers(Constants.API_PARAM_ALT)
+                .enqueue(new Callback<HashMap<String, Object>>() {
+                    @Override
+                    public void onResponse(Call<HashMap<String,Object>> call, Response<HashMap<String, Object>> response) {
+                        if (response.isSuccessful()) {
+                            results.postValue(new Base(response.body()));
+                        } else {
+                            results.postValue(new Base(response.message(), new NullPointerException()));
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<HashMap<String, Object>> call, Throwable t) {
+                        results.postValue(new Base("onFailure", new Exception(t)));
+                        Log.e("onResponse",results+"");
+                    }
+                });
 
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Failed to read value
-
-            }
-        });
-
-        return value;
+        return results;
     }
 }

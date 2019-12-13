@@ -7,22 +7,30 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     tools:context=".login.view.LoginActivity"
+    android:background="@color/colorAccent"
     android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:src="@drawable/kenkobanner"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_email"
+        style="@style/textViewMini"
         android:layout_marginLeft="25dp" />
 
     <EditText
         android:id="@+id/text_view_login_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:hint="@string/login_email"
         android:ems="10"
+        style="@style/editTextContainer"
         android:inputType="textEmailAddress" />
 
     <TextView
@@ -31,14 +39,16 @@
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
+        style="@style/textViewMini"
         android:text="@string/login_psswd" />
 
     <EditText
         android:id="@+id/text_view_login_password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:hint="@string/login_psswd"
         android:ems="10"
+        style="@style/editTextContainer"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:inputType="textPassword" />
@@ -55,22 +65,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
+            style="@style/textViewSecondary"
             android:layout_weight="1"
-            android:text="Registrate" />
+            android:text="@string/login_register"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
             android:layout_weight="1"
-            android:visibility="invisible"
-            android:text="@string/login_register" />
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/button_login_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_principal"
             android:layout_weight="1"
+            android:textColor="@color/colorWhite"
             android:text="@string/login_button" />
     </LinearLayout>
 

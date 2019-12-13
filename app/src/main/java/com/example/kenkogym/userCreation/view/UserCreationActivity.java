@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class UserCreationActivity extends AppCompatActivity {
 
     private Context context;
     private UserCreationViewModel viewModel;
+    private ProgressDialog loadingDialog;
 
     EditText editTextUser, editTextEmail, editTextPssw, editTextPsswdConfirmation;
     Button buttonSend;
@@ -49,6 +51,7 @@ public class UserCreationActivity extends AppCompatActivity {
         this.buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showLoading();
                 String user = editTextUser.getText().toString();
                 String email = editTextEmail.getText().toString();
                 String password = editTextPssw.getText().toString();
@@ -60,22 +63,18 @@ public class UserCreationActivity extends AppCompatActivity {
                             result.observe(UserCreationActivity.this, new Observer<Base>() {
                                 @Override
                                 public void onChanged(Base base) {
+                                    hideLoading();
                                     if (base.isSuccess()) {
                                         Log.e("Sucess","La logro");
                                         userLogged userLogged = (userLogged) base.getData();
-                                        //String json = new Gson().toJson(userLogged);
 
                                         Toast.makeText(context,
-                                                "Bienvenido Nuevo Usuario",
+                                                "Usuario Creado",
                                                 Toast.LENGTH_SHORT)
                                                 .show();
 
                                         Intent intent = new Intent(context, LoginActivity.class);
-                                        //intent.putExtra(Constants.INTENT_KEY_USER_LOGGED, json);
                                         startActivity(intent);
-
-                                        //executeLongAction();
-
                                     } else {
                                         Toast.makeText(context,
                                                 base.getMessage(),
@@ -106,5 +105,21 @@ public class UserCreationActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+
+    private void showLoading() {
+        loadingDialog = new ProgressDialog(context);
+        loadingDialog.setMessage("Loading");
+        loadingDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        loadingDialog.setMax(100);
+        loadingDialog.setProgress(0);
+        loadingDialog.show();
+    }
+
+    private void hideLoading(){
+        loadingDialog.dismiss();
+        loadingDialog.cancel();
     }
 }

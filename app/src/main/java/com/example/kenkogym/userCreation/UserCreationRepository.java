@@ -1,15 +1,22 @@
 package com.example.kenkogym.userCreation;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.kenkogym.utils.models.Base;
 import com.example.kenkogym.utils.models.objects.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
-public class UserCreationRepository implements  RepositoryCreateUserImpl{
+public class UserCreationRepository implements RepositoryCreateUserImpl {
 
     private static UserCreationRepository instance;
     private FirebaseAuth auth;
@@ -32,7 +39,18 @@ public class UserCreationRepository implements  RepositoryCreateUserImpl{
 
     public LiveData<Base> register(String email, String password) {
         final MutableLiveData<Base> results = new MutableLiveData<>();
-        this.auth.createUserWithEmailAndPassword(email, password);
+        this.auth.createUserWithEmailAndPassword(email,password ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    FirebaseUser user = auth.getCurrentUser();
+                    results.postValue(new Base(user));
+                } else {
+                    results.postValue(new Base("Failure",
+                            new NullPointerException()));
+                }
+            }
+        });
         return results;
     }
 }

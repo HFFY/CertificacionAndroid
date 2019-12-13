@@ -18,7 +18,7 @@ import java.util.Map;
 public class UserMainActivity extends AppCompatActivity {
 
     TextView textViewFragment;
-    Boolean fragmentPosition = true; // true = Days , false = profile
+    Boolean fragmentPosition = false; // true = Days , false = profile
 
     private Map<String, Fragment> mapFragments = new HashMap<>();
 
@@ -26,6 +26,7 @@ public class UserMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
+        getSupportActionBar().hide();
 
         initFragments();
         textViewFragment = findViewById(R.id.text_menu);

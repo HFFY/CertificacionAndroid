@@ -3,10 +3,10 @@
 
     <string name="login_user">Usuario</string>
     <string name="login_email">Correo Electrónico</string>
-    <string name="login_psswd">Contrasena</string>
-    <string name="login_psswd_confir">Confirme Contrasena</string>
+    <string name="login_psswd">Contraseña</string>
+    <string name="login_psswd_confir">Confirme Contraseña</string>
     <string name="login_button">Ingresar</string>
-    <string name="login_register">Resgistrate</string>
+    <string name="login_register">Resgístrate</string>
 
     <string name="login_invalid_email">Correo electronico invalido</string>
     <string name="login_welcome">Bienvenido: %s </string>

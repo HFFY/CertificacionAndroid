@@ -31,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     private Context context;
 
     private LoginViewModel viewModel;
-    private StudentsListViewModel studentsListViewModel;
     private ProgressDialog loadingDialog;
 
     private EditText emailEditText;
@@ -44,10 +43,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
 
         Log.e(LOG, "creado");
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        studentsListViewModel = new ViewModelProvider(this).get(StudentsListViewModel.class);
 
         this.context = this;
         initUI();
@@ -145,6 +144,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void hideLoading(){
+        loadingDialog.dismiss();
         loadingDialog.cancel();
     }
 }

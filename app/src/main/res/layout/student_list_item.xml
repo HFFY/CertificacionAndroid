@@ -27,19 +27,21 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/text_name"
-                android:layout_width="match_parent"
+                android:id="@+id/text_name_list"
+                android:layout_width="wrap_content"
+                android:padding="10dp"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:textSize="20sp"
+                android:background="@drawable/container_edit_text"
                 style="@style/textViewPrimaryWhite"/>
 
             <TextView
-                android:id="@+id/text_age"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:id="@+id/text_age_list"
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:layout_height="40dp"
                 android:gravity="start"
-                android:textSize="17sp"
                 android:background="@drawable/container_edit_text"
                 style="@style/textViewSecondary"/>
         </LinearLayout>

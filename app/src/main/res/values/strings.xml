@@ -18,6 +18,8 @@
     <string name="user_profile_hours">Horas entrenadas</string>
     <string name="user_profile_name">Kevin Luis Flores</string>
 
+    <string name="user_students">Ver Usuarios</string>
+
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
 
 

@@ -3,8 +3,12 @@ package com.example.kenkogym.userMain.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.example.kenkogym.studentsList.view.StudentsListActivity;
 import com.google.android.material.appbar.AppBarLayout;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -17,8 +21,9 @@ import java.util.Map;
 
 public class UserMainActivity extends AppCompatActivity {
 
-    TextView textViewFragment;
+    TextView textViewFragment,textViewStudents;
     Boolean fragmentPosition = false; // true = Days , false = profile
+    Activity activity = this;
 
     private Map<String, Fragment> mapFragments = new HashMap<>();
 
@@ -30,6 +35,7 @@ public class UserMainActivity extends AppCompatActivity {
 
         initFragments();
         textViewFragment = findViewById(R.id.text_menu);
+        textViewStudents = findViewById(R.id.text_students);
         textViewFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +51,13 @@ public class UserMainActivity extends AppCompatActivity {
             }
         });
 
+        textViewStudents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity , StudentsListActivity.class);
+                startActivity(intent);
+            }
+        });
         textViewFragment.setText("Ver días de entrenamiento");
         loadFragment(Constants.KEY_FRAGMENT_PROFILE);
     }

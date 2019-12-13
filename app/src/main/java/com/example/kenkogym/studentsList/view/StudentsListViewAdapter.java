@@ -31,7 +31,9 @@ public class StudentsListViewAdapter extends RecyclerView.Adapter<StudentsListVi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        holder.textViewAge.setText(userModelList.get(position).getAge());
+        Integer aux1 = userModelList.get(position).getAge();
+        String aux=aux1.toString()+ " años";
+        holder.textViewAge.setText(aux );
         holder.textViewName.setText(userModelList.get(position).getName());
 
     }
@@ -49,8 +51,8 @@ public class StudentsListViewAdapter extends RecyclerView.Adapter<StudentsListVi
         public ViewHolder(View v) {
             super(v);
             imageViewProfile = v.findViewById(R.id.image_profile_icon);
-            textViewName = v.findViewById(R.id.text_name);
-            textViewAge = v.findViewById(R.id.text_age);
+            textViewName = v.findViewById(R.id.text_name_list);
+            textViewAge = v.findViewById(R.id.text_age_list);
         }
     }
 

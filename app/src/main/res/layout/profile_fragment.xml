@@ -10,36 +10,57 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/textViewSecondary"
         android:text="@string/user_profile_weight"/>
 
     <TextView
         android:id="@+id/text_weight"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
+        style="@style/textViewPrimaryWhite"
         android:layout_height="wrap_content"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        style="@style/textViewSecondary"
         android:text="@string/user_profile_height"/>
 
     <TextView
         android:id="@+id/text_tall"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
+        style="@style/textViewPrimaryWhite"
         android:layout_height="wrap_content"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        style="@style/textViewSecondary"
         android:text="@string/user_profile_age"/>
 
     <TextView
         android:id="@+id/text_age"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
+        style="@style/textViewPrimaryWhite"
         android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        style="@style/textViewSecondary"
+        android:text="@string/user_profile_hours"/>
+
+    <TextView
+        android:id="@+id/text_hours"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        style="@style/textViewPrimaryWhite"
+        android:layout_height="wrap_content"/>
+
 
 </LinearLayout>

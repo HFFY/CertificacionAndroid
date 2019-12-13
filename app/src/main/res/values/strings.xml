@@ -15,6 +15,8 @@
     <string name="user_profile_weight">Peso</string>
     <string name="user_profile_height">Altura</string>
     <string name="user_profile_age">Edad</string>
+    <string name="user_profile_hours">Horas entrenadas</string>
+    <string name="user_profile_name">Kevin Luis Flores</string>
 
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
 

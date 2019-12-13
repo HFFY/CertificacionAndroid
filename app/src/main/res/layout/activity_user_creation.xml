@@ -6,22 +6,25 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
+    android:background="@color/colorAccent"
     tools:context=".userCreation.view.UserCreationActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
+        style="@style/textViewMini"
         android:text="@string/login_user" />
 
     <EditText
         android:id="@+id/edit_creation_user"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:ems="10"
         android:hint="@string/login_user"
+        style="@style/editTextContainer"
         android:inputType="text" />
 
     <TextView
@@ -30,16 +33,18 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
+        style="@style/textViewMini"
         android:text="@string/login_email" />
 
     <EditText
         android:id="@+id/edit_creation_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:ems="10"
-        android:hint="@string/login_psswd"
+        android:hint="@string/login_email"
+        style="@style/editTextContainer"
         android:inputType="textEmailAddress" />
 
     <TextView
@@ -48,16 +53,18 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
+        style="@style/textViewMini"
         android:text="@string/login_psswd" />
 
     <EditText
         android:id="@+id/edit_creation_password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:ems="10"
         android:hint="@string/login_psswd"
+        style="@style/editTextContainer"
         android:inputType="textPassword" />
 
     <TextView
@@ -66,16 +73,18 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
+        style="@style/textViewMini"
         android:text="@string/login_psswd_confir" />
 
     <EditText
         android:id="@+id/edit_creation_password_confirmation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:ems="10"
-        android:hint="@string/login_psswd"
+        android:hint="@string/login_psswd_confir"
+        style="@style/editTextContainer"
         android:inputType="textPassword" />
 
     <LinearLayout
@@ -97,8 +106,10 @@
             android:id="@+id/button_creation_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_principal"
             android:layout_weight="1"
-            android:text="Button" />
+            android:textColor="@color/colorWhite"
+            android:text="@string/login_register" />
     </LinearLayout>
 
 </LinearLayout>

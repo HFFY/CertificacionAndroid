@@ -35,10 +35,10 @@ public class UserCreationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_user_creation);
+        getSupportActionBar().hide();
         viewModel = new ViewModelProvider(this).get(UserCreationViewModel.class);
         this.context = this;
-        setContentView(R.layout.activity_user_creation);
         editTextUser = findViewById(R.id.edit_creation_user);
         editTextEmail = findViewById(R.id.edit_creation_email);
         editTextPssw = findViewById(R.id.edit_creation_password);

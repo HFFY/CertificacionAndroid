@@ -36,13 +36,16 @@ public class UserMainActivity extends AppCompatActivity {
                 if (fragmentPosition) {
                     fragmentPosition = false;
                     loadFragment(Constants.KEY_FRAGMENT_PROFILE);
+                    textViewFragment.setText("Ver días de entrenamiento");
                 } else {
                     fragmentPosition = true;
                     loadFragment(Constants.KEY_FRAGMENT_DAYS);
+                    textViewFragment.setText("Ver perfil de datos");
                 }
             }
         });
 
+        textViewFragment.setText("Ver días de entrenamiento");
         loadFragment(Constants.KEY_FRAGMENT_PROFILE);
     }
 

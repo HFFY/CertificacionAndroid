@@ -1,7 +1,5 @@
 package com.example.kenkogym.studentsList;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 
 import com.example.kenkogym.utils.models.Base;
@@ -27,7 +25,7 @@ public class StudentsListRepository implements RepositoryUserImpl {
 
     @Override
     public LiveData<Base> getUsers() {
-        Log.e("Repository", ApiRepository.getInstance().getUsers()+"");
+
         return ApiRepository.getInstance().getUsers();
     }
 

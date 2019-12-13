@@ -18,7 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kenkogym.R;
 import com.example.kenkogym.login.viewModel.LoginViewModel;
-import com.example.kenkogym.main.view.MainActivity;
+import com.example.kenkogym.studentsList.viewModel.StudentsListViewModel;
 import com.example.kenkogym.userCreation.view.UserCreationActivity;
 import com.example.kenkogym.userMain.view.UserMainActivity;
 import com.example.kenkogym.utils.models.Base;
@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private Context context;
 
     private LoginViewModel viewModel;
+    private StudentsListViewModel studentsListViewModel;
     private ProgressDialog loadingDialog;
 
     private EditText emailEditText;
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Log.e(LOG, "creado");
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        studentsListViewModel = new ViewModelProvider(this).get(StudentsListViewModel.class);
 
         this.context = this;
         initUI();

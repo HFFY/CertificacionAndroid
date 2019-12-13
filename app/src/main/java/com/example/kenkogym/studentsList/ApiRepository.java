@@ -1,7 +1,5 @@
 package com.example.kenkogym.studentsList;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -49,7 +47,7 @@ public class ApiRepository {
                     @Override
                     public void onFailure(Call<HashMap<String, Object>> call, Throwable t) {
                         results.postValue(new Base("onFailure", new Exception(t)));
-                        Log.e("onResponse",results+"");
+
                     }
                 });
 

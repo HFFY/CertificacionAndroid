@@ -1,7 +1,5 @@
 package com.example.kenkogym.studentsList.viewModel;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -18,7 +16,7 @@ public class StudentsListViewModel extends ViewModel {
     public LiveData<Base> getUsers() {
 
 
-        Log.e("Viewmodel",repository.getUsers()+"");
+
         return repository.getUsers();
     }
 //    public User getUser(){

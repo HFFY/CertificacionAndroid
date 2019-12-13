@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 public class ProfileFragment extends Fragment {
 
-    TextView textViewWeight, textViewHeight, textViewAge;
+    TextView textViewWeight, textViewHeight, textViewAge, textViewHours;
     View view;
 
     @Override
@@ -22,6 +22,14 @@ public class ProfileFragment extends Fragment {
         textViewWeight = view.findViewById(R.id.text_weight);
         textViewHeight = view.findViewById(R.id.text_tall);
         textViewAge = view.findViewById(R.id.text_age);
+        textViewHours = view.findViewById(R.id.text_hours);
+
+        //Datos Mockeados
+        textViewWeight.setText("100 Kg");
+        textViewHeight.setText("1.80 cm");
+        textViewAge.setText("22 años");
+        textViewHours.setText("180 Horas");
+
         return view;
     }
 }

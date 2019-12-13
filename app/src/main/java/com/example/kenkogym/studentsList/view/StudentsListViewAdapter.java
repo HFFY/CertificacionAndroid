@@ -30,6 +30,10 @@ public class StudentsListViewAdapter extends RecyclerView.Adapter<StudentsListVi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+
+        holder.textViewAge.setText(userModelList.get(position).getAge());
+        holder.textViewName.setText(userModelList.get(position).getName());
+
     }
 
     @Override

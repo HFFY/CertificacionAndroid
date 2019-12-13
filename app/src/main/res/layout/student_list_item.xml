@@ -16,32 +16,32 @@
             android:id="@+id/image_profile_icon"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:scaleType="centerInside"
-            tools:src="@drawable/ash_ketchum" />
+            android:padding="5dp"
+            android:tint="@color/colorWhite"
+            android:src="@drawable/ic_profile_user"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/text_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/colorCarolineBlue"
+                android:gravity="start"
                 android:textSize="20sp"
-                tools:text="User Name Example" />
+                style="@style/textViewPrimaryWhite"/>
 
             <TextView
                 android:id="@+id/text_age"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/colorCarolineBlue"
+                android:layout_height="25dp"
+                android:gravity="start"
                 android:textSize="17sp"
-                tools:text="User Type Example" />
+                android:background="@drawable/container_edit_text"
+                style="@style/textViewSecondary"/>
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

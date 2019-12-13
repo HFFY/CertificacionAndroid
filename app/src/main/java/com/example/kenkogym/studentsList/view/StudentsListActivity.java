@@ -1,28 +1,28 @@
 package com.example.kenkogym.studentsList.view;
 
 import android.os.Bundle;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kenkogym.R;
 import com.example.kenkogym.studentsList.viewModel.StudentsListViewModel;
-import com.example.kenkogym.utils.UserUtils;
 import com.example.kenkogym.utils.models.Base;
 import com.example.kenkogym.utils.models.objects.User;
 
-import java.util.List;
+import java.util.ArrayList;
 
 //import com.google.gson.Gson;
 
 public class StudentsListActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
     private RecyclerView recyclerView;
     private StudentsListViewModel studentsListViewModel;
+
     //private Gson gson = new Gson();
 
     @Override
@@ -30,7 +30,12 @@ public class StudentsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_students_list);
         initViews();
-        final List<User> userList = UserUtils.getUsers();
+
+
+
+        final ArrayList<User> userList=new ArrayList<User>();
+
+
         StudentsListViewAdapter adapter = new StudentsListViewAdapter(userList);
 //        recyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
@@ -44,7 +49,6 @@ public class StudentsListActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
     private void initViews() {
-        toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recycler_students);
     }
 
@@ -53,6 +57,22 @@ public class StudentsListActivity extends AppCompatActivity {
     }
     private LiveData<Base> getUsers(){
         studentsListViewModel = new ViewModelProvider(this).get(StudentsListViewModel.class);
-        return studentsListViewModel.getUsers();
+        final MutableLiveData<Base> result = new MutableLiveData<>();
+        studentsListViewModel.getUsers().observe(this, new Observer<Base>() {
+                    @Override
+                    public void onChanged(Base base) {
+
+                        if (base.isSuccess()) {
+                            ArrayList<User> list = (ArrayList<User>) base.getData();
+
+
+
+
+                        } else {
+
+                        }
+                    }
+                });
+        return result;
     }
 }

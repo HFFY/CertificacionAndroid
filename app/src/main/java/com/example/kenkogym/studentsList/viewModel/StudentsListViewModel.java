@@ -1,10 +1,17 @@
 package com.example.kenkogym.studentsList.viewModel;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.example.kenkogym.studentsList.StudentsListRepository;
 import com.example.kenkogym.utils.models.Base;
+import com.example.kenkogym.utils.models.objects.User;
+
+import java.util.ArrayList;
 
 public class StudentsListViewModel extends ViewModel {
 
@@ -14,10 +21,23 @@ public class StudentsListViewModel extends ViewModel {
     public StudentsListViewModel() {repository = StudentsListRepository.getInstance();}
 
     public LiveData<Base> getUsers() {
+        final MutableLiveData<Base> result = new MutableLiveData<>();
+        repository.getUsers().observeForever(new Observer<Base>() {
+            @Override
+            public void onChanged(Base base) {
+                if (base.isSuccess()) {
+                    ArrayList<User> map = (ArrayList<User>) base.getData();
+                   // ArrayList<User> data = ResponseMapper.mapObjectsToUser(map);
 
+                    result.setValue(new Base(map));
+                    Log.e("asd",result.getValue().getData()+"");
+                } else {
+                    result.setValue(base);
+                }
+            }
+        });
 
-
-        return repository.getUsers();
+        return result;
     }
 //    public User getUser(){
 //        User user=createUser(getUsers().get(id));

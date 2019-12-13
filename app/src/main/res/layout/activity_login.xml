@@ -85,6 +85,14 @@
             android:layout_weight="1"
             android:textColor="@color/colorWhite"
             android:text="@string/login_button" />
+        <Button
+            android:id="@+id/button_extra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_principal"
+            android:layout_weight="1"
+            android:textColor="@color/colorWhite"
+            android:text="Student" />
     </LinearLayout>
 
 </LinearLayout>

@@ -2,7 +2,6 @@ package com.example.kenkogym.studentsList;
 
 import com.example.kenkogym.utils.models.objects.User;
 
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -19,7 +18,7 @@ public interface UsersApi {
      * @return
      */
     @GET("Api%2Fusers.json")
-    Call<HashMap<String,Object>> getUsers(@Query("alt") String alt);
+    Call<List<User>> getUsers(@Query("alt") String alt);
 
     //E.g. Create a user
     @POST("user")

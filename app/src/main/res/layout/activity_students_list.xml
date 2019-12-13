@@ -5,12 +5,6 @@
     android:background="@color/colorPatricksBlue"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPatricksBlue"
-        android:elevation="5dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_students"

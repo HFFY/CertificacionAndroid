@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.kenkogym.utils.Constants;
 import com.example.kenkogym.utils.models.Base;
+import com.example.kenkogym.utils.models.objects.User;
 
-import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,9 +34,9 @@ public class ApiRepository {
         final MutableLiveData<Base> results = new MutableLiveData<>();
 
         usersAPI.getUsers(Constants.API_PARAM_ALT)
-                .enqueue(new Callback<HashMap<String, Object>>() {
+                .enqueue(new Callback<List<User>>() {
                     @Override
-                    public void onResponse(Call<HashMap<String,Object>> call, Response<HashMap<String, Object>> response) {
+                    public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                         if (response.isSuccessful()) {
                             results.postValue(new Base(response.body()));
                         } else {
@@ -45,7 +46,7 @@ public class ApiRepository {
                     }
 
                     @Override
-                    public void onFailure(Call<HashMap<String, Object>> call, Throwable t) {
+                    public void onFailure(Call<List<User>> call, Throwable t) {
                         results.postValue(new Base("onFailure", new Exception(t)));
 
                     }

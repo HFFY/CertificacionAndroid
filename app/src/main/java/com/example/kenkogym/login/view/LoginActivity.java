@@ -18,7 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kenkogym.R;
 import com.example.kenkogym.login.viewModel.LoginViewModel;
-import com.example.kenkogym.studentsList.viewModel.StudentsListViewModel;
+import com.example.kenkogym.studentsList.view.StudentsListActivity;
 import com.example.kenkogym.userCreation.view.UserCreationActivity;
 import com.example.kenkogym.userMain.view.UserMainActivity;
 import com.example.kenkogym.utils.models.Base;
@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private TextView registerText;
     private Button sendButton;
+    private Button sendToStudent;
 
 
     @Override
@@ -67,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         this.passwordEditText = findViewById(R.id.text_view_login_password);
         this.sendButton = findViewById(R.id.button_login_send);
         this.registerText = findViewById(R.id.text_view_login_create);
+        this.sendToStudent = findViewById(R.id.button_extra);
     }
 
     private void initEvents() {
@@ -75,6 +77,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.e("Registro","Click");
                 Intent intent = new Intent(context, UserCreationActivity.class);
+                startActivity(intent);
+            }
+        });
+        this.sendToStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, StudentsListActivity.class);
                 startActivity(intent);
             }
         });

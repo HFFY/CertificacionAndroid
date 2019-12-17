@@ -16,6 +16,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -43,9 +44,10 @@ public class UserMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_main);
         getSupportActionBar().hide();
 
-
         viewModel = new ViewModelProvider(this).get(UserMainViewModel.class);
         initFragments();
+        getDays();
+
         textViewFragment = findViewById(R.id.text_menu);
         textViewStudents = findViewById(R.id.text_students);
         textViewFragment.setOnClickListener(new View.OnClickListener() {
@@ -89,12 +91,17 @@ public class UserMainActivity extends AppCompatActivity {
     }
 
     private void getDays(){
-        LiveData<ArrayList<Days>> result = viewModel.getDays();
+        final LiveData<ArrayList<Days>> result = viewModel.getDays();
         result.observe(UserMainActivity.this, new Observer<ArrayList<Days>>() {
 
             @Override
             public void onChanged(ArrayList<Days> days) {
+                String title= days.get(1).getTitlo();
+                String id=  days.get(2).getId().toString();
+                String status;
+                status = Integer.toString( days.get(3).getStatus());
 
+                Log.e("Activity",title+ " "+ id + " " +status);
             }
         });
     }

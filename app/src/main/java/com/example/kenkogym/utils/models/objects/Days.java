@@ -9,7 +9,18 @@ public class Days {
     public Days(int status, String titlo, Long id) {
         this.status = status;
         this.titlo = titlo;
-        Id = id;
+        this.Id = id;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public String getTitlo() {
+        return titlo;
+    }
+
+    public Long getId() {
+        return Id;
+    }
 }

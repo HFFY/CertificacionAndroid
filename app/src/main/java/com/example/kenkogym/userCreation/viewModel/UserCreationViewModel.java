@@ -21,7 +21,7 @@ public class UserCreationViewModel extends ViewModel {
     public UserCreationViewModel() {repository = UserCreationRepository.getInstance();}
 
 
-    public LiveData<Base> createUser(String user, String email, String passwod){
+    public LiveData<Base> createUser(String email, String passwod){
         final MutableLiveData<Base> result = new MutableLiveData<>();
 
         repository.register(email, passwod).observeForever(new Observer<Base>() {

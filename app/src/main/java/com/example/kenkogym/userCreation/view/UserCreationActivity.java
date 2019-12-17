@@ -29,7 +29,7 @@ public class UserCreationActivity extends AppCompatActivity {
     private UserCreationViewModel viewModel;
     private ProgressDialog loadingDialog;
 
-    EditText editTextUser, editTextEmail, editTextPssw, editTextPsswdConfirmation;
+    EditText editTextUserName, editTextUserWeight, editTextUserHeight, editTextUserAge, editTextEmail, editTextPssw, editTextPsswdConfirmation;
     Button buttonSend;
 
     @Override
@@ -39,7 +39,10 @@ public class UserCreationActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         viewModel = new ViewModelProvider(this).get(UserCreationViewModel.class);
         this.context = this;
-        editTextUser = findViewById(R.id.edit_creation_user);
+        editTextUserName = findViewById(R.id.edit_creation_user_name);
+        editTextUserWeight = findViewById(R.id.edit_user_weight);
+        editTextUserHeight = findViewById(R.id.edit_user_height);
+        editTextUserAge = findViewById(R.id.edit_user_height);
         editTextEmail = findViewById(R.id.edit_creation_email);
         editTextPssw = findViewById(R.id.edit_creation_password);
         editTextPsswdConfirmation = findViewById(R.id.edit_creation_password_confirmation);
@@ -52,20 +55,24 @@ public class UserCreationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showLoading();
-                String user = editTextUser.getText().toString();
+                String userName = editTextUserName.getText().toString();
+                String userWeigth = editTextUserWeight.getText().toString();
+                String userHeigth = editTextUserHeight.getText().toString();
+                String userAge = editTextUserAge.getText().toString();
                 String email = editTextEmail.getText().toString();
                 String password = editTextPssw.getText().toString();
                 String passwordconfimation = editTextPsswdConfirmation.getText().toString();
-                if (!email.isEmpty() && !password.isEmpty() && !user.isEmpty() && !passwordconfimation.isEmpty()) {
+                if (!email.isEmpty() && !password.isEmpty() &&  !userName.isEmpty() && !userWeigth.isEmpty() &&
+                        !userHeigth.isEmpty() && !userAge.isEmpty() && !passwordconfimation.isEmpty()) {
                     if (email.contains("@")) {
                         if (password.equals(passwordconfimation)) {
-                            LiveData<Base> result = viewModel.createUser(user,email,password);
+                            LiveData<Base> result = viewModel.createUser(email, password);
                             result.observe(UserCreationActivity.this, new Observer<Base>() {
                                 @Override
                                 public void onChanged(Base base) {
                                     hideLoading();
                                     if (base.isSuccess()) {
-                                        Log.e("Sucess","La logro");
+                                        Log.e("Sucess", "La logro");
                                         userLogged userLogged = (userLogged) base.getData();
 
                                         Toast.makeText(context,
@@ -108,7 +115,6 @@ public class UserCreationActivity extends AppCompatActivity {
     }
 
 
-
     private void showLoading() {
         loadingDialog = new ProgressDialog(context);
         loadingDialog.setMessage("Loading");
@@ -118,7 +124,7 @@ public class UserCreationActivity extends AppCompatActivity {
         loadingDialog.show();
     }
 
-    private void hideLoading(){
+    private void hideLoading() {
         loadingDialog.dismiss();
         loadingDialog.cancel();
     }

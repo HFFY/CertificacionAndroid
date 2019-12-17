@@ -3,20 +3,29 @@ package com.example.kenkogym.userMain.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kenkogym.studentsList.view.StudentsListActivity;
+import com.example.kenkogym.userMain.viewModel.UserMainViewModel;
+import com.example.kenkogym.utils.models.Base;
+import com.example.kenkogym.utils.models.objects.Days;
 import com.google.android.material.appbar.AppBarLayout;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.kenkogym.R;
 import com.example.kenkogym.utils.Constants;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class UserMainActivity extends AppCompatActivity {
@@ -24,7 +33,9 @@ public class UserMainActivity extends AppCompatActivity {
     TextView textViewFragment,textViewStudents;
     Boolean fragmentPosition = false; // true = Days , false = profile
     Activity activity = this;
+    UserMainViewModel viewModel;
 
+    private List<Days> daysList= new ArrayList<>();
     private Map<String, Fragment> mapFragments = new HashMap<>();
 
     @Override
@@ -33,7 +44,10 @@ public class UserMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_main);
         getSupportActionBar().hide();
 
+        viewModel = new ViewModelProvider(this).get(UserMainViewModel.class);
         initFragments();
+        getDays();
+
         textViewFragment = findViewById(R.id.text_menu);
         textViewStudents = findViewById(R.id.text_students);
         textViewFragment.setOnClickListener(new View.OnClickListener() {
@@ -74,5 +88,21 @@ public class UserMainActivity extends AppCompatActivity {
                     .replace(R.id.containerFrameLayout, mapFragments.get(key), key)
                     .commit();
         }
+    }
+
+    private void getDays(){
+        final LiveData<ArrayList<Days>> result = viewModel.getDays();
+        result.observe(UserMainActivity.this, new Observer<ArrayList<Days>>() {
+
+            @Override
+            public void onChanged(ArrayList<Days> days) {
+                String title= days.get(1).getTitlo();
+                String id=  days.get(2).getId().toString();
+                String status;
+                status = Integer.toString( days.get(3).getStatus());
+
+                Log.e("Activity",title+ " "+ id + " " +status);
+            }
+        });
     }
 }

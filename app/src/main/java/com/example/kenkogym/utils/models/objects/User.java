@@ -2,6 +2,8 @@ package com.example.kenkogym.utils.models.objects;
 
 import com.example.kenkogym.utils.models.types.enumUser;
 
+import java.util.ArrayList;
+
 public class User {
 
     /**
@@ -9,7 +11,7 @@ public class User {
      *          Email
      *          ID
      */
-    private String uId;
+    private Long uId;
     private enumUser type;
     private String name;
     private String email;
@@ -18,6 +20,8 @@ public class User {
     private int age;
     private int weight;
     private int heigh;
+    private ArrayList<Days> days;
+
 
 
     /**
@@ -29,7 +33,7 @@ public class User {
      * <p>
      * En ese caso deberiamos crear otra clase solo para el login donde tendriamos solo Email, Password que busque un id y compare
      **/
-    public User(String id, enumUser type, String name,String email, String password, int image, int age, int weight, int heigh){
+    public User(Long id, enumUser type, String name,String email, String password, int image, int age, int weight, int heigh){
         this.uId=id;
         this.type=type;
         this.name=name;
@@ -40,11 +44,14 @@ public class User {
         this.weight=weight;
         this.heigh=heigh;
     }
+    public User(){
+
+    }
 
 
-    public String getuId() {return uId;}
+    public Long getuId() {return uId;}
 
-    public void setuId(String uId) {this.uId = uId;}
+    public void setuId(Long uId) {this.uId = uId;}
 
     public String getEmail() {return email;}
 
@@ -82,14 +89,6 @@ public class User {
         this.weight = weight;
     }
 
-    public int getHigh() {
-        return heigh;
-    }
-
-    public void setHigh(int high) {
-        this.heigh = high;
-    }
-
     public enumUser getTipo() {
         return type;
     }
@@ -112,5 +111,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getHeigh() {
+        return heigh;
+    }
+
+    public void setHeigh(int heigh) {
+        this.heigh = heigh;
+    }
+
+    public ArrayList<Days> getDays() {
+        return days;
+    }
+
+    public void setDays(ArrayList<Days> days) {
+        this.days = days;
     }
 }

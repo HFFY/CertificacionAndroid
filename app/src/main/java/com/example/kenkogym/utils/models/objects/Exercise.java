@@ -11,5 +11,31 @@ public class Exercise {
         this.type=type;
         this.image=image;
     }
+    public Exercise(){
 
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public enumExercise getType() {
+        return type;
+    }
+
+    public void setType(enumExercise type) {
+        this.type = type;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
 }

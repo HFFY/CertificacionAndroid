@@ -1,7 +1,5 @@
 package com.example.kenkogym.studentsList.viewModel;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -30,7 +28,7 @@ public class StudentsListViewModel extends ViewModel {
                    // ArrayList<User> data = ResponseMapper.mapObjectsToUser(map);
 
                     result.setValue(new Base(map));
-                    Log.e("asd",result.getValue().getData()+"");
+
                 } else {
                     result.setValue(base);
                 }
@@ -38,6 +36,9 @@ public class StudentsListViewModel extends ViewModel {
         });
 
         return result;
+    }
+    public void tempGetUser(){
+        repository.tempGetUsers();
     }
 //    public User getUser(){
 //        User user=createUser(getUsers().get(id));

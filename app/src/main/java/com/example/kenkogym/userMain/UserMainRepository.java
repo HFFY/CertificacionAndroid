@@ -1,24 +1,20 @@
 package com.example.kenkogym.userMain;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.kenkogym.userCreation.RepositoryCreateUserImpl;
+import com.example.kenkogym.utils.FireBaseRepository;
 import com.example.kenkogym.utils.models.objects.Days;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.kenkogym.utils.models.objects.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class UserMainRepository implements RepositoryImplementation {
 
     private static UserMainRepository instance;
     private ArrayList<Days> days= new ArrayList<>();
     private Object Days;
+    private static FireBaseRepository database;
 
     public static UserMainRepository getInstance(){
         if (instance == null) {
@@ -27,7 +23,11 @@ public class UserMainRepository implements RepositoryImplementation {
         return instance;
     }
 
-    private UserMainRepository() {  }
+    private UserMainRepository() {
+        database=FireBaseRepository.getInstance();
+
+
+    }
 
     public LiveData<ArrayList<Days>> getDays(){
         final MutableLiveData<ArrayList<Days>> results = new MutableLiveData<>();
@@ -44,5 +44,8 @@ public class UserMainRepository implements RepositoryImplementation {
         days.add(new Days(2,"Sabado", (long) 20191228));
         days.add(new Days(0,"Domingo", (long) 20191229));
         return days;
+    }
+    private ArrayList<User> getAllUsers(){
+        return database.getAllUsers();
     }
 }

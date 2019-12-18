@@ -41,6 +41,7 @@ public class StudentsListActivity extends AppCompatActivity {
 
     private LiveData<Base> getUsers(){
         studentsListViewModel = new ViewModelProvider(this).get(StudentsListViewModel.class);
+        studentsListViewModel.tempGetUser();
         final MutableLiveData<Base> result = new MutableLiveData<>();
         studentsListViewModel.getUsers().observe(this, new Observer<Base>() {
                     @Override

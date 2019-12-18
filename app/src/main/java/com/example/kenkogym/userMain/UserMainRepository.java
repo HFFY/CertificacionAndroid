@@ -30,11 +30,7 @@ public class UserMainRepository implements RepositoryImplementation {
     private UserMainRepository() {  }
 
     public LiveData<ArrayList<Days>> getDays(){
-        //createDays();
         final MutableLiveData<ArrayList<Days>> results = new MutableLiveData<>();
-        /*for(Days myDay : createDays()){
-            results.postValue(myDay);
-        }*/
         results.postValue(createDays());
         return results;
     }

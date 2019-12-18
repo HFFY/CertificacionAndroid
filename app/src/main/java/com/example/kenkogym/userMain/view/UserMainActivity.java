@@ -96,12 +96,12 @@ public class UserMainActivity extends AppCompatActivity {
 
             @Override
             public void onChanged(ArrayList<Days> days) {
-                String title= days.get(1).getTitlo();
-                String id=  days.get(2).getId().toString();
-                String status;
-                status = Integer.toString( days.get(3).getStatus());
+       //         String title= days.get(1).getTitlo();
+       //         String id=  days.get(2).getId().toString();
+       //         String status;
+       //        status = Integer.toString( days.get(3).getStatus());
 
-                Log.e("Activity",title+ " "+ id + " " +status);
+     //           Log.e("Activity",title+ " "+ id + " " +status);
             }
         });
     }

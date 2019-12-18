@@ -27,8 +27,6 @@ public class UserMainViewModel extends AndroidViewModel {
 
     public LiveData<ArrayList<Days>> getDays() {
         final MutableLiveData<ArrayList<Days>> result = new MutableLiveData<>();
-
-
         repository.getDays().observeForever(new Observer<ArrayList<Days>>() {
             @Override
             public void onChanged(ArrayList<Days> days) {

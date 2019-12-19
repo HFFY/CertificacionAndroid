@@ -1,5 +1,11 @@
 package com.example.kenkogym.userMain.view;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -7,21 +13,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.kenkogym.R;
 import com.example.kenkogym.studentsList.view.StudentsListActivity;
 import com.example.kenkogym.userMain.viewModel.UserMainViewModel;
-import com.example.kenkogym.utils.models.Base;
-import com.example.kenkogym.utils.models.objects.Days;
-import com.google.android.material.appbar.AppBarLayout;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-
-import com.example.kenkogym.R;
 import com.example.kenkogym.utils.Constants;
+import com.example.kenkogym.utils.models.objects.Days;
+import com.example.kenkogym.utils.models.objects.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,5 +101,8 @@ public class UserMainActivity extends AppCompatActivity {
      //           Log.e("Activity",title+ " "+ id + " " +status);
             }
         });
+    }
+    public ArrayList<User> getAllUsers(){
+        return viewModel.getAllUsers();
     }
 }

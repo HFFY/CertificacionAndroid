@@ -45,7 +45,7 @@ public class UserMainRepository implements RepositoryImplementation {
         days.add(new Days(0,"Domingo", (long) 20191229));
         return days;
     }
-    private ArrayList<User> getAllUsers(){
+    public ArrayList<User> getAllUsers(){
         return database.getAllUsers();
     }
 }

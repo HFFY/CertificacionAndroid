@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -141,14 +142,19 @@ public class LoginActivity extends AppCompatActivity {
     private void showLoading() {
         loadingDialog = new ProgressDialog(context);
         loadingDialog.setMessage("Loading");
+
         loadingDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        loadingDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        registerText.setEnabled(false);
         loadingDialog.setMax(100);
         loadingDialog.setProgress(0);
         loadingDialog.show();
+
     }
 
     private void hideLoading(){
         loadingDialog.dismiss();
+        registerText.setEnabled(true);
         loadingDialog.cancel();
     }
 }

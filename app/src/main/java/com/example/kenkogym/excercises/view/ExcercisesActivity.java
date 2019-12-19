@@ -28,7 +28,7 @@ public class ExcercisesActivity extends AppCompatActivity {
     ExcercisesAdapter adapter;
     Activity activity = this;
 
-    List<Exercise> exercisesList;
+    List<Exercise> exercisesList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +75,7 @@ public class ExcercisesActivity extends AppCompatActivity {
             }
         });
     }
+
     public LiveData<List<String>> getExercises(Long id){
         final MutableLiveData<List<String>> result = new MutableLiveData<>();
         viewModel.getExercises(id).observeForever(new Observer<List<String>>() {

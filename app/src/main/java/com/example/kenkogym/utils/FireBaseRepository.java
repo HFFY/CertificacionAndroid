@@ -94,7 +94,7 @@ public class FireBaseRepository {
 
     }
 
-    public void setExercises(final ArrayList<String> exercises,final Long id) {
+    public void setExercises(final List<String> exercises,final Long id) {
         DatabaseReference myRef=database.getReference("Users");
         final ArrayList<User> temp = new ArrayList<>();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {

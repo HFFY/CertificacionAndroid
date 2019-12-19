@@ -43,6 +43,7 @@ public class UserMainActivity extends AppCompatActivity {
     UserMainViewModel viewModel;
     String mailLogged = "";
     Boolean firstTime = true;
+    public static Long idUserSelected;
     public static Boolean isTrainer = false;
     public static User userLogged;
     public static User userSelected;
@@ -167,6 +168,7 @@ public class UserMainActivity extends AppCompatActivity {
         textViewAge.setText(userSelected.getAge()+"");
         textViewHours.setText("180");
         textViewName.setText(userSelected.getName());
+        idUserSelected = userSelected.getuId();
     }
 
     public void getAllUsers(){

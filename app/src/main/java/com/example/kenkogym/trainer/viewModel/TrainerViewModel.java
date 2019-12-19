@@ -22,7 +22,7 @@ public class TrainerViewModel extends AndroidViewModel {
         super(application);
         repository=TrainerRepository.getInstance(application);
     }
-    public void setExercises(ArrayList<String> exercises, Long id){
+    public void setExercises(List<String> exercises, Long id){
             repository.setExercises(exercises,id);
     }
 

@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.kenkogym.userMain.view.UserMainActivity.idUserSelected;
+
 public class TrainerActivity extends AppCompatActivity {
     private TrainerViewModel viewModel;
 
@@ -32,66 +34,46 @@ public class TrainerActivity extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     TrainerExcerciseSelectionAdapter adapter;
     Activity activity = this;
+    List<Exercise> exercisesList = new ArrayList<>();
+    List<String> selectedExc = new ArrayList<>();
 
-
-    List<Exercise> exercisesList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainer);
-        viewModel= new ViewModelProvider(this).get(TrainerViewModel.class);
-
-
-        //ROOM exercises
         viewModel = new ViewModelProvider(this).get(TrainerViewModel.class);
-
-        viewModel.getAllExercises().observe(this, new Observer<List<Exercise>>() {
-            @Override
-            public void onChanged(List<Exercise> exercises) {
-                Log.e("Exercises", new Gson().toJson(exercises));
-            }
-        });
-    }
-
-    public void getExercises(){
-        viewModel.getAllExercises().observe(this, new Observer<List<Exercise>>() {
-            @Override
-            public void onChanged(List<Exercise> exercises) {
-                exercisesList=exercises;
-                Log.e("Exercises", new Gson().toJson(exercises));
-            }
-        });
-    }
-
-
-    public void setExercise(ArrayList<String> exercises,Long id){
-        viewModel.setExercises(exercises,id);
-
         buttonSave = findViewById(R.id.button_trainer_save);
         recyclerViewExc = findViewById(R.id.recycler_excercises);
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                viewModel.setExercises(selectedExc,idUserSelected);
             }
         });
 
-        List<String> strings = new ArrayList<>();
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
+        getExercises();
+    }
 
-        linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerViewExc.setLayoutManager(linearLayoutManager);
-        adapter = new TrainerExcerciseSelectionAdapter(activity,strings);
-        recyclerViewExc.setAdapter(adapter);
+    public void getExercises() {
+        viewModel.getAllExercises().observe(this, new Observer<List<Exercise>>() {
+            @Override
+            public void onChanged(List<Exercise> exercises) {
+                exercisesList = exercises;
+                Log.e("Exercises", new Gson().toJson(exercises));
+                linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerViewExc.setLayoutManager(linearLayoutManager);
+                adapter = new TrainerExcerciseSelectionAdapter(activity, exercisesList);
+                recyclerViewExc.setAdapter(adapter);
+            }
+        });
+    }
 
-
+    public void setSelection(String id, Boolean selected) {
+        if (selected) {
+            selectedExc.add(id);
+        } else {
+            selectedExc.remove(id);
+        }
     }
 }

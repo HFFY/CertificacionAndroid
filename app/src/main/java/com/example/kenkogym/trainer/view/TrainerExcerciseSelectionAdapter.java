@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.kenkogym.R;
+import com.example.kenkogym.utils.models.objects.Exercise;
 
 import java.util.List;
 
@@ -17,10 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class TrainerExcerciseSelectionAdapter extends RecyclerView.Adapter<TrainerExcerciseSelectionAdapter.ViewHolder> {
 
-    private List<String> userModelList;
+    private List<Exercise> userModelList;
     private Activity activity;
 
-    public TrainerExcerciseSelectionAdapter(Activity activity, List<String> userModelList) {
+    public TrainerExcerciseSelectionAdapter(Activity activity, List<Exercise> userModelList) {
         this.userModelList = userModelList;
         this.activity = activity;
     }
@@ -35,10 +36,10 @@ public class TrainerExcerciseSelectionAdapter extends RecyclerView.Adapter<Train
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
-        switch (userModelList.get(position)){
-            default:
-                break;
-        }
+//        switch (userModelList.get(position)){
+//            default:
+//                break;
+//        }
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override

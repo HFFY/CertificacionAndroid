@@ -120,10 +120,10 @@ public class FireBaseRepository {
             }
         });
     }
-    public ArrayList<String> getExercises(final Long id){
-        final ArrayList<String> exercises;
+    public LiveData<List<String>> getExercises(final Long id){
         final ArrayList<User> temp = new ArrayList<>();
         DatabaseReference myRef=database.getReference("Users");
+        final MutableLiveData<List<String>> result = new MutableLiveData<>();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -132,7 +132,7 @@ public class FireBaseRepository {
                     temp.add(postSnapshot.getValue(User.class));
 
                 }
-
+                    result.setValue(temp.get(id.intValue()).getExercises());
             }
 
             @Override
@@ -140,7 +140,7 @@ public class FireBaseRepository {
 
             }
         });
-        exercises=temp.get(id.intValue()).getExercises();
-        return exercises;
+
+        return result;
     }
 }

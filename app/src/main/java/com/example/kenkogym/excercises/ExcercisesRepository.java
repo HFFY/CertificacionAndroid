@@ -1,6 +1,10 @@
 package com.example.kenkogym.excercises;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.kenkogym.utils.FireBaseRepository;
+
+import java.util.List;
 
 public class ExcercisesRepository {
     private static ExcercisesRepository instance;
@@ -15,7 +19,8 @@ public class ExcercisesRepository {
     public ExcercisesRepository(){
         repository=FireBaseRepository.getInstance();
     }
-    public void getExercises(Long id){
-        repository.getExercises(id);
+
+    public LiveData<List<String>> getExercises(Long id){
+       return repository.getExercises(id);
     }
 }

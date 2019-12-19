@@ -1,14 +1,13 @@
 package com.example.kenkogym.excercises.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kenkogym.R;
 import com.example.kenkogym.excercises.viewModel.ExcercisesViewModel;
@@ -47,7 +46,7 @@ public class ExcercisesActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         viewModel= new ViewModelProvider(this).get(ExcercisesViewModel.class);
     }
-    public void getExercises(Long id){
-        viewModel.getExercises(id);
+    public LiveData<List<String>> getExercises(Long id){
+        return viewModel.getExercises(id);
     }
 }

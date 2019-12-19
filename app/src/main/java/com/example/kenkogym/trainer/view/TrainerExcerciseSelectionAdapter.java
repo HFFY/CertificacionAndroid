@@ -36,10 +36,7 @@ public class TrainerExcerciseSelectionAdapter extends RecyclerView.Adapter<Train
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-//        switch (userModelList.get(position)){
-//            default:
-//                break;
-//        }
+        holder.textViewName.setText(userModelList.get(position).getName());
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override

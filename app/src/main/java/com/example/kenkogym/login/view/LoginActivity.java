@@ -18,7 +18,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kenkogym.R;
 import com.example.kenkogym.login.viewModel.LoginViewModel;
-import com.example.kenkogym.studentsList.view.StudentsListActivity;
 import com.example.kenkogym.userCreation.view.UserCreationActivity;
 import com.example.kenkogym.userMain.view.UserMainActivity;
 import com.example.kenkogym.utils.models.Base;
@@ -38,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
     private TextView registerText;
     private Button sendButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         Log.e(LOG, "creado");
+
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
         this.context = this;

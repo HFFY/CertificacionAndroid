@@ -33,6 +33,8 @@ public class TrainerActivity extends AppCompatActivity {
     TrainerExcerciseSelectionAdapter adapter;
     Activity activity = this;
 
+
+    List<Exercise> exercisesList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,17 @@ public class TrainerActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void getExercises(){
+        viewModel.getAllExercises().observe(this, new Observer<List<Exercise>>() {
+            @Override
+            public void onChanged(List<Exercise> exercises) {
+                exercisesList=exercises;
+                Log.e("Exercises", new Gson().toJson(exercises));
+            }
+        });
+    }
+
 
     public void setExercise(ArrayList<String> exercises,Long id){
         viewModel.setExercises(exercises,id);

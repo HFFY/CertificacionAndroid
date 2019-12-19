@@ -3,6 +3,7 @@ package com.example.kenkogym.login.view;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,12 +23,15 @@ import com.example.kenkogym.login.viewModel.LoginViewModel;
 import com.example.kenkogym.userCreation.view.UserCreationActivity;
 import com.example.kenkogym.userMain.view.UserMainActivity;
 import com.example.kenkogym.utils.models.Base;
+import com.example.kenkogym.utils.models.objects.Exercise;
+import com.example.kenkogym.utils.models.types.enumExercise;
 import com.example.kenkogym.utils.models.userLogged;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String LOG = LoginActivity.class.getSimpleName();
-
+    private static final String SHARED = "SharedKenko";
+    private static final String SHARED_BOOL = "SharedKenkoBool";
     private Context context;
 
     private LoginViewModel viewModel;
@@ -61,6 +65,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT) //Duración
                     .show();
         }
+
+        checkSaredPreferences();
     }
 
     private void initUI() {
@@ -156,5 +162,16 @@ public class LoginActivity extends AppCompatActivity {
         loadingDialog.dismiss();
         registerText.setEnabled(true);
         loadingDialog.cancel();
+    }
+
+    private void checkSaredPreferences(){
+        SharedPreferences prefs = getSharedPreferences(SHARED, MODE_PRIVATE);
+        Boolean hasShared = prefs.getBoolean(SHARED_BOOL,false);
+        if(!hasShared){
+            SharedPreferences.Editor settingsEditor = prefs.edit();
+            settingsEditor.putBoolean(SHARED_BOOL,true);
+            settingsEditor.commit();
+            //TODO: Koche aquí llamas a tu método de registro de los ejercicios
+        }
     }
 }

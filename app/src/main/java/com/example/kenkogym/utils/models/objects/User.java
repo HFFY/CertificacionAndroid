@@ -33,7 +33,7 @@ public class User {
      * <p>
      * En ese caso deberiamos crear otra clase solo para el login donde tendriamos solo Email, Password que busque un id y compare
      **/
-    public User(Long id, enumUser type, String name,String email, String password, int image, int age, int weight, int heigh){
+    public User(Long id, enumUser type, String name,String email, String password, int image, int age, int weight, int heigh, ArrayList<Days> days){
         this.uId=id;
         this.type=type;
         this.name=name;
@@ -43,6 +43,7 @@ public class User {
         this.age=age;
         this.weight=weight;
         this.heigh=heigh;
+        this.days=days;
     }
     public User(){
 

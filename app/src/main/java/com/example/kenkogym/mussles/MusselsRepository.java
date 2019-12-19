@@ -9,7 +9,7 @@ import com.example.kenkogym.utils.models.objects.Exercise;
 
 import java.util.List;
 
-public class MusselsRepository implements  RepositoryImpl {
+public class MusselsRepository implements RepositoryImplRoom {
 
     private static MusselsRepository instance;
     private LocalRepository local;

@@ -1,5 +1,6 @@
 package com.example.kenkogym.studentsList.view;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,8 +25,7 @@ public class StudentsListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private StudentsListViewModel studentsListViewModel;
     LinearLayoutManager linearLayoutManager;
-
-    //private Gson gson = new Gson();
+    Activity activity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class StudentsListActivity extends AppCompatActivity {
                             ArrayList<User> list = (ArrayList<User>) base.getData();
                             linearLayoutManager = new LinearLayoutManager(getApplicationContext());
                             recyclerView.setLayoutManager(linearLayoutManager);
-                            StudentsListViewAdapter adapter = new StudentsListViewAdapter(list);
+                            StudentsListViewAdapter adapter = new StudentsListViewAdapter(activity, list);
                             recyclerView.setAdapter(adapter);
                         } else {
 
@@ -59,5 +59,9 @@ public class StudentsListActivity extends AppCompatActivity {
                     }
                 });
         return result;
+    }
+
+    public void selectStudent(String id){
+        //TODO: redireccionar y cargar UserMain
     }
 }

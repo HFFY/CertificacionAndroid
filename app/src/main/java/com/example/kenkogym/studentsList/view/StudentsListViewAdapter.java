@@ -1,9 +1,11 @@
 package com.example.kenkogym.studentsList.view;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.kenkogym.R;
@@ -16,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class StudentsListViewAdapter extends RecyclerView.Adapter<StudentsListViewAdapter.ViewHolder> {
 
     private List<User> userModelList;
+    private Activity activity;
 
-    public StudentsListViewAdapter(List<User> userModelList) {
+    public StudentsListViewAdapter(Activity activity, List<User> userModelList) {
         this.userModelList = userModelList;
+        this.activity = activity;
     }
 
     @Override
@@ -29,13 +33,19 @@ public class StudentsListViewAdapter extends RecyclerView.Adapter<StudentsListVi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         Integer aux1 = userModelList.get(position).getAge();
         String aux=aux1.toString()+ " años";
         holder.textViewAge.setText(aux );
         holder.textViewName.setText(userModelList.get(position).getName());
 
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((StudentsListActivity) activity).selectStudent(userModelList.get(position).getEmail());
+            }
+        });
     }
 
     @Override
@@ -47,12 +57,14 @@ public class StudentsListViewAdapter extends RecyclerView.Adapter<StudentsListVi
 
         ImageView imageViewProfile;
         TextView textViewName, textViewAge;
+        LinearLayout linearLayout;
 
         public ViewHolder(View v) {
             super(v);
             imageViewProfile = v.findViewById(R.id.image_profile_icon);
             textViewName = v.findViewById(R.id.text_name_list);
             textViewAge = v.findViewById(R.id.text_age_list);
+            linearLayout = v.findViewById(R.id.linear_student_list);
         }
     }
 

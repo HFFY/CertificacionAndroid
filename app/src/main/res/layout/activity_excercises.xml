@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorAccent"
-    android:gravity="center"
+    android:gravity="center_vertical"
+    android:padding="25dp"
     tools:context=".excercises.view.ExcercisesActivity">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_exc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Ejercicios"
-        style="@style/textViewPrimaryWhite"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"/>
 
 </LinearLayout>

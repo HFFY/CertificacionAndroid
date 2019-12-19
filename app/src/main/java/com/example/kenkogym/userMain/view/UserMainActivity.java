@@ -34,15 +34,27 @@ public class UserMainActivity extends AppCompatActivity {
     Boolean fragmentPosition = false; // true = Days , false = profile
     Activity activity = this;
     UserMainViewModel viewModel;
+    boolean isTrainer = false;
 
     private List<Days> daysList= new ArrayList<>();
     private Map<String, Fragment> mapFragments = new HashMap<>();
+
+    //TODO declarar la lista estática
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
         getSupportActionBar().hide();
+
+        Bundle args = getIntent().getExtras();
+
+        if(args != null){
+            //TODO cargar todo de acuerdo al estudiante seleccionado
+        }else{
+            //TODO llamar a la base de datos
+            //TODO una vez finalizada la llamada a la base de datos diferenciar si es o no Trainer
+        }
 
         viewModel = new ViewModelProvider(this).get(UserMainViewModel.class);
         initFragments();
@@ -74,6 +86,10 @@ public class UserMainActivity extends AppCompatActivity {
         });
         textViewFragment.setText("Ver días de entrenamiento");
         loadFragment(Constants.KEY_FRAGMENT_PROFILE);
+
+        if(isTrainer){
+            textViewStudents.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void initFragments() {

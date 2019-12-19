@@ -20,7 +20,7 @@ public class User {
     private int age;
     private int weight;
     private int heigh;
-    private ArrayList<Days> days;
+    private ArrayList<String> exercises;
 
 
 
@@ -33,17 +33,16 @@ public class User {
      * <p>
      * En ese caso deberiamos crear otra clase solo para el login donde tendriamos solo Email, Password que busque un id y compare
      **/
-    public User(Long id, enumUser type, String name,String email, String password, int image, int age, int weight, int heigh, ArrayList<Days> days){
-        this.uId=id;
+    public User(enumUser type, String name,String email, String password, int age, int weight, int heigh, ArrayList<String> exercises){
+
         this.type=type;
         this.name=name;
         this.email=email;
         this.password=password;
-        this.image=image;
         this.age=age;
         this.weight=weight;
         this.heigh=heigh;
-        this.days=days;
+        this.exercises=exercises;
     }
     public User(){
 
@@ -90,13 +89,6 @@ public class User {
         this.weight = weight;
     }
 
-    public enumUser getTipo() {
-        return type;
-    }
-
-    public void setTipo(enumUser tipo) {
-        this.type = tipo;
-    }
 
     public String getName() {
         return name;
@@ -122,11 +114,11 @@ public class User {
         this.heigh = heigh;
     }
 
-    public ArrayList<Days> getDays() {
-        return days;
+    public ArrayList<String> getExercises() {
+        return exercises;
     }
 
-    public void setDays(ArrayList<Days> days) {
-        this.days = days;
+    public void setExercises(ArrayList<String> exercises) {
+        this.exercises = exercises;
     }
 }

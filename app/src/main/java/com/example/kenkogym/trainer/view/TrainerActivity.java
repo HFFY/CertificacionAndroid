@@ -9,12 +9,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.kenkogym.R;
+import com.example.kenkogym.trainer.viewModel.TrainerViewModel;
+
+import java.util.ArrayList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TrainerActivity extends AppCompatActivity {
+    private TrainerViewModel viewModel;
 
     Button buttonSave;
     RecyclerView recyclerViewExc;
@@ -26,6 +33,11 @@ public class TrainerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainer);
+        viewModel= new ViewModelProvider(this).get(TrainerViewModel.class);
+    }
+
+    public void setExercise(ArrayList<String> exercises,Long id){
+        viewModel.setExercises(exercises,id);
 
         buttonSave = findViewById(R.id.button_trainer_save);
         recyclerViewExc = findViewById(R.id.recycler_excercises);

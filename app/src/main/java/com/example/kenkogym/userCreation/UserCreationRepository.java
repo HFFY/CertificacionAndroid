@@ -4,11 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.kenkogym.utils.FireBaseRepository;
 import com.example.kenkogym.utils.models.Base;
 import com.example.kenkogym.utils.models.objects.User;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +19,7 @@ public class UserCreationRepository implements RepositoryCreateUserImpl {
 
     private static UserCreationRepository instance;
     private FirebaseAuth auth;
+    private FireBaseRepository repository;
 
     public static UserCreationRepository getInstance() {
         if (instance == null) {
@@ -30,6 +30,7 @@ public class UserCreationRepository implements RepositoryCreateUserImpl {
 
     private UserCreationRepository() {
         auth = FirebaseAuth.getInstance();
+        repository=FireBaseRepository.getInstance();
     }
 
     @Override
@@ -52,5 +53,9 @@ public class UserCreationRepository implements RepositoryCreateUserImpl {
             }
         });
         return results;
+    }
+    public void insertUser(User user){
+        repository.insertUser(user);
+
     }
 }

@@ -2,11 +2,11 @@ package com.example.kenkogym.utils;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.kenkogym.utils.models.Base;
-import com.example.kenkogym.utils.models.objects.Exercise;
 import com.example.kenkogym.utils.models.objects.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -51,7 +51,7 @@ public class FireBaseRepository {
 
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     users.add(postSnapshot.getValue(User.class));
-
+                    Log.e("User",users.size()+"");
                 }
             }
 
@@ -63,7 +63,81 @@ public class FireBaseRepository {
         });
         return users;
     }
-    public ArrayList<Exercise> getExerciseFromUser(String userid){
-        return null;
+    public void insertUser(final User user){
+
+         DatabaseReference myRefTemp=database.getReference("Users");
+
+         ValueEventListener valueEventListener = new ValueEventListener() {
+             @Override
+             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                 long count=dataSnapshot.getChildrenCount();
+                 Long id= count;
+
+                 DatabaseReference myRef=database.getReference("Users/"+id);
+
+                 user.setuId(id);
+
+
+                 myRef.setValue(user);
+             }
+
+             @Override
+             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+             }
+         };
+         myRefTemp.addListenerForSingleValueEvent(valueEventListener);
+
+
+    }
+
+    public void setExercises(final ArrayList<String> exercises,final Long id) {
+        DatabaseReference myRef=database.getReference("Users");
+        final ArrayList<User> temp = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    temp.add(postSnapshot.getValue(User.class));
+
+                }
+                temp.get(id.intValue()).setExercises(exercises);
+                DatabaseReference myReftemp=database.getReference("Users/"+id.intValue());
+
+
+
+
+                myReftemp.setValue(temp.get(id.intValue()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+    public ArrayList<String> getExercises(final Long id){
+        final ArrayList<String> exercises;
+        final ArrayList<User> temp = new ArrayList<>();
+        DatabaseReference myRef=database.getReference("Users");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    temp.add(postSnapshot.getValue(User.class));
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        exercises=temp.get(id.intValue()).getExercises();
+        return exercises;
     }
 }

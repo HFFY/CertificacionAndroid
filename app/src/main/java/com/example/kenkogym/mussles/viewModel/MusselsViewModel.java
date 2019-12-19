@@ -21,10 +21,9 @@ public class MusselsViewModel extends AndroidViewModel {
         repository = MusselsRepository.getInstance(application);
     }
 
-    public LiveData<Exercise> registerExercise(final Exercise exercise) {
+    public void registerExercise(final Exercise exercise) {
         final MutableLiveData<Exercise> result = new MutableLiveData<>();
         repository.insert(exercise);
-        return result;
     }
 
 

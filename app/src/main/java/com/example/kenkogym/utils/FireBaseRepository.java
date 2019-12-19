@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FireBaseRepository {
     private static FireBaseRepository instance;
@@ -42,17 +43,19 @@ public class FireBaseRepository {
         //TODO magic
         return results;
     }
-    public ArrayList<User> getAllUsers(){
+    public LiveData<List<User>> getAllUsers(){
         DatabaseReference myRef=database.getReference("Users");
         users = new ArrayList<>();
+        final MutableLiveData<List<User>> result = new MutableLiveData<>();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     users.add(postSnapshot.getValue(User.class));
-                    Log.e("User",users.size()+"");
+
                 }
+                result.setValue(users);
             }
 
             @Override
@@ -61,7 +64,7 @@ public class FireBaseRepository {
                 Log.w("Users", "Failed to read value.", error.toException());
             }
         });
-        return users;
+        return result;
     }
     public void insertUser(final User user){
 

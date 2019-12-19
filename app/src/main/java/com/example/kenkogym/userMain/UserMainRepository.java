@@ -2,12 +2,14 @@ package com.example.kenkogym.userMain;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.kenkogym.utils.FireBaseRepository;
 import com.example.kenkogym.utils.models.objects.Days;
 import com.example.kenkogym.utils.models.objects.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserMainRepository implements RepositoryImplementation {
 
@@ -45,7 +47,14 @@ public class UserMainRepository implements RepositoryImplementation {
         days.add(new Days(0,"Domingo", (long) 20191229));
         return days;
     }
-    public ArrayList<User> getAllUsers(){
-        return database.getAllUsers();
+    public LiveData<List<User>> getAllUsers(){
+        final MutableLiveData<List<User>> result = new MutableLiveData<>();
+        database.getAllUsers().observeForever(new Observer<List<User>>() {
+            @Override
+            public void onChanged(List<User> users) {
+                result.postValue(users);
+            }
+        });
+        return result;
     }
 }

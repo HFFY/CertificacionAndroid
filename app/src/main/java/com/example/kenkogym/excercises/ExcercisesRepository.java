@@ -2,7 +2,10 @@ package com.example.kenkogym.excercises;
 
 import android.app.Application;
 
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.kenkogym.mussles.RepositoryImplRoom;
 import com.example.kenkogym.mussles.local.LocalRepository;
@@ -47,6 +50,13 @@ public class ExcercisesRepository implements RepositoryImplRoom {
 
     @Override
     public LiveData<List<Exercise>> getAllExercises() {
-        return local.getAll();
+        final MutableLiveData<List<Exercise>> result = new MutableLiveData<>();
+        local.getAll().observeForever(new Observer<List<Exercise>>() {
+            @Override
+            public void onChanged(List<Exercise> exercises) {
+                result.postValue(exercises);
+            }
+        });
+        return  result;
     }
 }

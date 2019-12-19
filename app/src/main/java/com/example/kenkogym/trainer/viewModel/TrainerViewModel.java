@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.example.kenkogym.trainer.TrainerRepository;
@@ -33,6 +34,14 @@ public class TrainerViewModel extends AndroidViewModel {
 
 
     public LiveData<List<Exercise>> getAllExercises() {
-        return repository.getAllExercises();
+        final MutableLiveData<List<Exercise>> result = new MutableLiveData<>();
+        repository.getAllExercises().observeForever(new Observer<List<Exercise>>() {
+            @Override
+            public void onChanged(List<Exercise> exercises) {
+                result.postValue(exercises);
+            }
+        });
+
+        return  result;
     }
 }

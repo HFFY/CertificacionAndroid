@@ -31,12 +31,15 @@ public class ExcercisesActivity extends AppCompatActivity {
     ExcercisesAdapter adapter;
     Activity activity = this;
 
+    List<Exercise> exercisesList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_excercises);
 
         recyclerView = findViewById(R.id.recycler_exc);
+        viewModel= new ViewModelProvider(this).get(ExcercisesViewModel.class);
 
         List<String> strings = new ArrayList<>();
         strings.add("");
@@ -48,28 +51,32 @@ public class ExcercisesActivity extends AppCompatActivity {
         strings.add("");
         strings.add("");
 
-        linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new ExcercisesAdapter(activity, strings);
-        recyclerView.setAdapter(adapter);
-        viewModel= new ViewModelProvider(this).get(ExcercisesViewModel.class);
+        getExercises();
 
         //Room methods
         /*
         viewModel = new ViewModelProvider(this).get(ExcercisesViewModel.class);
+*/
 
+
+
+    }
+//    public LiveData<List<String>> getExercises(Long id){
+//        return viewModel.getExercises(id);
+//    }
+
+    public void getExercises(){
         viewModel.getAllExercises().observe(this, new Observer<List<Exercise>>() {
             @Override
             public void onChanged(List<Exercise> exercises) {
+                exercisesList=exercises;
                 Log.e("Exercises", new Gson().toJson(exercises));
+                linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerView.setLayoutManager(linearLayoutManager);
+                adapter = new ExcercisesAdapter(activity, exercisesList);
+                recyclerView.setAdapter(adapter);
             }
         });
-
-         */
     }
-    public LiveData<List<String>> getExercises(Long id){
-        return viewModel.getExercises(id);
-    }
-
 
 }

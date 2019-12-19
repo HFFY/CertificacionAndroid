@@ -3,6 +3,8 @@ package com.example.kenkogym.trainer;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.kenkogym.mussles.RepositoryImplRoom;
 import com.example.kenkogym.mussles.local.LocalRepository;
@@ -26,14 +28,14 @@ public class TrainerRepository implements RepositoryImplRoom {
         return instance;
     }
 
-    public TrainerRepository(Application application){
-        repository=FireBaseRepository.getInstance();
+    public TrainerRepository(Application application) {
+        repository = FireBaseRepository.getInstance();
         local = new LocalRepository(application);
     }
 
 
-    public void setExercises(ArrayList<String> exercises,Long id){
-        repository.setExercises(exercises,id);
+    public void setExercises(ArrayList<String> exercises, Long id) {
+        repository.setExercises(exercises, id);
     }
 
 
@@ -46,6 +48,13 @@ public class TrainerRepository implements RepositoryImplRoom {
 
     @Override
     public LiveData<List<Exercise>> getAllExercises() {
-        return local.getAll();
+        final MutableLiveData<List<Exercise>> result = new MutableLiveData<>();
+        local.getAll().observeForever(new Observer<List<Exercise>>() {
+            @Override
+            public void onChanged(List<Exercise> exercises) {
+                result.postValue(exercises);
+            }
+        });
+        return result;
     }
 }

@@ -6,6 +6,7 @@
     <string name="login_user_weight">Peso (Kg)</string>
     <string name="login_user_height">Altura (m)</string>
     <string name="login_user_age">Edad</string>
+    <string name="login_user_trainer">Soy entrenador</string>
     <string name="login_email">Correo Electrónico</string>
     <string name="login_psswd">Contraseña</string>
     <string name="login_psswd_confir">Confirme Contraseña</string>

@@ -25,6 +25,7 @@ import com.example.kenkogym.utils.models.types.enumUser;
 import com.example.kenkogym.utils.models.userLogged;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserCreationActivity extends AppCompatActivity {
 
@@ -47,7 +48,7 @@ public class UserCreationActivity extends AppCompatActivity {
         editTextUserName = findViewById(R.id.edit_creation_user_name);
         editTextUserWeight = findViewById(R.id.edit_user_weight);
         editTextUserHeight = findViewById(R.id.edit_user_height);
-        editTextUserAge = findViewById(R.id.edit_user_height);
+        editTextUserAge = findViewById(R.id.edit_user_age);
         editTextEmail = findViewById(R.id.edit_creation_email);
         editTextPssw = findViewById(R.id.edit_creation_password);
         editTextPsswdConfirmation = findViewById(R.id.edit_creation_password_confirmation);
@@ -68,16 +69,15 @@ public class UserCreationActivity extends AppCompatActivity {
                 String email = editTextEmail.getText().toString();
                 String password = editTextPssw.getText().toString();
                 String passwordconfimation = editTextPsswdConfirmation.getText().toString();
-                enumUser type=enumUser.STUDENT;
-                if (!email.isEmpty() && !password.isEmpty() &&  !userName.isEmpty() && !userWeigth.isEmpty() &&
+                enumUser type = enumUser.STUDENT;
+                if (!email.isEmpty() && !password.isEmpty() && !userName.isEmpty() && !userWeigth.isEmpty() &&
                         !userHeigth.isEmpty() && !userAge.isEmpty() && !passwordconfimation.isEmpty()) {
                     if (email.contains("@")) {
                         if (password.equals(passwordconfimation)) {
-                            if(checkBoxTrainer.isChecked()){
-                                type=enumUser.TRAINER;
-                            }
-                            else{
-                                type=enumUser.STUDENT;
+                            if (checkBoxTrainer.isChecked()) {
+                                type = enumUser.TRAINER;
+                            } else {
+                                type = enumUser.STUDENT;
                             }
 
                             LiveData<Base> result = viewModel.createUser(email, password);
@@ -124,8 +124,8 @@ public class UserCreationActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT)
                             .show();
                 }
-                ArrayList<String> list=new ArrayList<>();
-                User user = new User(type,userName,email,password,Integer.parseInt(userAge),Integer.parseInt(userWeigth),Integer.parseInt(userHeigth), list);
+                List<String> list = new ArrayList<>();
+                User user = new User(type, userName, email, password, Integer.parseInt(userAge), Double.parseDouble(userWeigth), Double.parseDouble(userHeigth), list);
                 viewModel.insertUser(user);
             }
         });

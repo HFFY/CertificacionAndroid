@@ -20,7 +20,7 @@ import java.util.List;
 public class FireBaseRepository {
     private static FireBaseRepository instance;
     private  FirebaseDatabase database;
-    private static ArrayList<User> users;
+    private static List<User> users;
 
     public static FireBaseRepository getInstance() {
         if (instance == null) {
@@ -120,9 +120,9 @@ public class FireBaseRepository {
             }
         });
     }
-    public ArrayList<String> getExercises(final Long id){
-        final ArrayList<String> exercises;
-        final ArrayList<User> temp = new ArrayList<>();
+    public List<String> getExercises(final Long id){
+        final List<String> exercises;
+        final List<User> temp = new ArrayList<>();
         DatabaseReference myRef=database.getReference("Users");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

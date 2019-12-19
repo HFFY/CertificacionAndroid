@@ -43,7 +43,7 @@ public class StudentsListViewAdapter extends RecyclerView.Adapter<StudentsListVi
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((StudentsListActivity) activity).selectStudent(userModelList.get(position).getEmail());
+                ((StudentsListActivity) activity).selectStudent(userModelList.get(position));
             }
         });
     }

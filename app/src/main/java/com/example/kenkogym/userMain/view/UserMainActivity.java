@@ -22,10 +22,16 @@ import com.example.kenkogym.utils.models.objects.Days;
 import com.example.kenkogym.utils.models.objects.User;
 import com.example.kenkogym.utils.models.types.enumUser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.example.kenkogym.userMain.view.ProfileFragment.textViewAge;
+import static com.example.kenkogym.userMain.view.ProfileFragment.textViewHeight;
+import static com.example.kenkogym.userMain.view.ProfileFragment.textViewHours;
+import static com.example.kenkogym.userMain.view.ProfileFragment.textViewWeight;
 
 public class UserMainActivity extends AppCompatActivity {
 
@@ -33,7 +39,7 @@ public class UserMainActivity extends AppCompatActivity {
     Boolean fragmentPosition = false; // true = Days , false = profile
     Activity activity = this;
     UserMainViewModel viewModel;
-    String mailLogged;
+    String mailLogged = "";
     Boolean firstTime = true;
     public static Boolean isTrainer = false;
     public static User userLogged;
@@ -49,9 +55,8 @@ public class UserMainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         Bundle args = getIntent().getExtras();
-
         if (args != null) {
-            //TODO cargar todo de acuerdo al estudiante seleccionado
+            mailLogged = args.getString("Email");
         }
 
         viewModel = new ViewModelProvider(this).get(UserMainViewModel.class);
@@ -80,22 +85,25 @@ public class UserMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity, StudentsListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("UserList", (Serializable) userList);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
         textViewFragment.setText("Ver días de entrenamiento");
         loadFragment(Constants.KEY_FRAGMENT_PROFILE);
 
-        if (isTrainer) {
-            textViewStudents.setVisibility(View.INVISIBLE);
-        }
+        getAllUsers();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(!firstTime){
-
+        if(firstTime){
+            firstTime=false;
+        }else{
+            setUserSelectedData();
         }
     }
 
@@ -142,23 +150,32 @@ public class UserMainActivity extends AppCompatActivity {
                 }
             }
         }
+        if (isTrainer) {
+            textViewStudents.setVisibility(View.VISIBLE);
+        }else{
+            textViewStudents.setVisibility(View.INVISIBLE);
+        }
+        setUserSelectedData();
     }
 
-//    public void initializeView() {
-//        textViewStudents.setText();
-//    }
+    public void setUserSelectedData(){
+        textViewWeight.setText(userSelected.getWeight()+"");
+        textViewHeight.setText(userSelected.getHeigh()+"");
+        textViewAge.setText(userSelected.getAge()+"");
+        textViewHours.setText("180");
+        textViewName.setText(userSelected.getName());
+    }
 
-    public List<User> getAllUsers(){
+    public void getAllUsers(){
         final MutableLiveData<List<User>> result = new MutableLiveData<>();
         final List<User> list= new ArrayList<>();
         viewModel.getAllUsers().observeForever(new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> users) {
                 list.addAll(users);
-
+                initializeUsers(list);
             }
 
         });
-        return list;
     }
 }

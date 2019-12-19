@@ -1,7 +1,5 @@
 package com.example.kenkogym.excercises.viewModel;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
@@ -14,8 +12,7 @@ import com.example.kenkogym.utils.models.objects.Exercise;
 
 import java.util.List;
 
-public class ExcercisesViewModel extends ViewModel {
-import java.util.List;
+
 
 public class ExcercisesViewModel extends AndroidViewModel {
     private ExcercisesRepository repository;

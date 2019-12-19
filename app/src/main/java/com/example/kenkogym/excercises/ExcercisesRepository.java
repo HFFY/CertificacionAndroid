@@ -1,9 +1,17 @@
 package com.example.kenkogym.excercises;
 
-import com.example.kenkogym.utils.FireBaseRepository;
+import android.app.Application;
 
-public class ExcercisesRepository {
+import androidx.lifecycle.LiveData;
+
+import com.example.kenkogym.mussles.RepositoryImplRoom;
+import com.example.kenkogym.mussles.local.LocalRepository;
+import com.example.kenkogym.utils.FireBaseRepository;
+import com.example.kenkogym.utils.models.objects.Exercise;
+
 import java.util.List;
+
+
 
 public class ExcercisesRepository implements RepositoryImplRoom {
     private static ExcercisesRepository instance;
@@ -27,9 +35,7 @@ public class ExcercisesRepository implements RepositoryImplRoom {
        return repository.getExercises(id);
 
 
-    public void
-    getExercises(Long id){
-        repository.getExercises(id);
+
     }
 
     //Room methods, for insert Exercise and get all Excercises

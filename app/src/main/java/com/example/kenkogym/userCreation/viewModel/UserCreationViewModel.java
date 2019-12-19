@@ -12,8 +12,6 @@ import com.example.kenkogym.utils.models.objects.User;
 import com.example.kenkogym.utils.models.userLogged;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.ArrayList;
-
 public class UserCreationViewModel extends ViewModel {
 
     private UserCreationRepository repository;
@@ -39,6 +37,10 @@ public class UserCreationViewModel extends ViewModel {
 
         return result;
 
+    }
+
+    public void insertUser(User user){
+        repository.insertUser(user);
     }
 
 }

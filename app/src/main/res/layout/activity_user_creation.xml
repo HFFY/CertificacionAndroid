@@ -177,13 +177,26 @@
                 android:orientation="horizontal"
                 android:weightSum="3">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_weight="2"
-                    android:gravity="start"
-                    android:text="TextView"
-                    android:visibility="invisible" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        style="@style/textViewMini"
+                        android:text="@string/login_psswd_confir" />
+
+                    <CheckBox
+                        android:id="@+id/check_im_trainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/button_creation_send"

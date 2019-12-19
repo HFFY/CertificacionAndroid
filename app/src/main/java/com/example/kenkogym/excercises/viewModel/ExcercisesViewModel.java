@@ -24,7 +24,15 @@ public class ExcercisesViewModel extends AndroidViewModel {
         repository= ExcercisesRepository.getInstance(application);
     }
     public LiveData<List<String>> getExercises(Long id){
-       return repository.getExercises(id);
+        final MutableLiveData<List<String>> result = new MutableLiveData<>();
+        repository.getExercises(id).observeForever(new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> strings) {
+                result.postValue(strings);
+            }
+        });
+        return result;
+
     }
 
 

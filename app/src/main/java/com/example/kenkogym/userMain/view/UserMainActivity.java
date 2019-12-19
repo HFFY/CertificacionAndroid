@@ -1,9 +1,11 @@
 package com.example.kenkogym.userMain.view;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,6 +49,7 @@ public class UserMainActivity extends AppCompatActivity {
     public static List<User> userList = new ArrayList<>();
     private List<Days> daysList = new ArrayList<>();
     private Map<String, Fragment> mapFragments = new HashMap<>();
+    private ProgressDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,13 +172,33 @@ public class UserMainActivity extends AppCompatActivity {
     public void getAllUsers(){
         final MutableLiveData<List<User>> result = new MutableLiveData<>();
         final List<User> list= new ArrayList<>();
+        showLoading();
         viewModel.getAllUsers().observeForever(new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> users) {
                 list.addAll(users);
                 initializeUsers(list);
+                hideLoading();
             }
 
         });
+    }
+    private void showLoading() {
+        loadingDialog = new ProgressDialog(this);
+        loadingDialog.setMessage("Loading");
+
+        loadingDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        loadingDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+        loadingDialog.setMax(100);
+        loadingDialog.setProgress(0);
+        loadingDialog.show();
+
+    }
+
+    private void hideLoading(){
+        loadingDialog.dismiss();
+
+        loadingDialog.cancel();
     }
 }

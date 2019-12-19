@@ -1,16 +1,13 @@
 package com.example.kenkogym.excercises.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -78,5 +75,17 @@ public class ExcercisesActivity extends AppCompatActivity {
             }
         });
     }
+    public LiveData<List<String>> getExercises(Long id){
+        final MutableLiveData<List<String>> result = new MutableLiveData<>();
+        viewModel.getExercises(id).observeForever(new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> strings) {
+                result.postValue(strings);
+            }
+        });
+        return result;
+
+    }
+
 
 }

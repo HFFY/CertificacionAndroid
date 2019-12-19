@@ -13,6 +13,7 @@ import com.example.kenkogym.utils.models.objects.Days;
 import com.example.kenkogym.utils.models.objects.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserMainViewModel extends AndroidViewModel {
 
@@ -34,7 +35,14 @@ public class UserMainViewModel extends AndroidViewModel {
         });
         return result;
     }
-    public ArrayList<User> getAllUsers(){
-        return repository.getAllUsers();
+    public LiveData<List<User>> getAllUsers(){
+        final MutableLiveData<List<User>> result = new MutableLiveData<>();
+        repository.getAllUsers().observeForever(new Observer<List<User>>() {
+            @Override
+            public void onChanged(List<User> users) {
+                result.postValue(users);
+            }
+        });
+        return result;
     }
 }

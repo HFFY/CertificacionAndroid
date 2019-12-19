@@ -19,6 +19,7 @@ import com.example.kenkogym.userMain.viewModel.UserMainViewModel;
 import com.example.kenkogym.utils.Constants;
 import com.example.kenkogym.utils.models.objects.Days;
 import com.example.kenkogym.utils.models.objects.User;
+import com.example.kenkogym.utils.models.types.enumUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,16 +28,18 @@ import java.util.Map;
 
 public class UserMainActivity extends AppCompatActivity {
 
-    TextView textViewFragment,textViewStudents;
+    TextView textViewFragment, textViewStudents, textViewName;
     Boolean fragmentPosition = false; // true = Days , false = profile
     Activity activity = this;
     UserMainViewModel viewModel;
-    boolean isTrainer = false;
-
-    private List<Days> daysList= new ArrayList<>();
+    String mailLogged;
+    Boolean firstTime = true;
+    public static Boolean isTrainer = false;
+    public static User userLogged;
+    public static User userSelected;
+    public static List<User> userList = new ArrayList<>();
+    private List<Days> daysList = new ArrayList<>();
     private Map<String, Fragment> mapFragments = new HashMap<>();
-
-    //TODO declarar la lista estática
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +49,15 @@ public class UserMainActivity extends AppCompatActivity {
 
         Bundle args = getIntent().getExtras();
 
-        if(args != null){
+        if (args != null) {
             //TODO cargar todo de acuerdo al estudiante seleccionado
-        }else{
-            //TODO llamar a la base de datos
-            //TODO una vez finalizada la llamada a la base de datos diferenciar si es o no Trainer
         }
 
         viewModel = new ViewModelProvider(this).get(UserMainViewModel.class);
         initFragments();
         getDays();
 
+        textViewName = findViewById(R.id.text_name);
         textViewFragment = findViewById(R.id.text_menu);
         textViewStudents = findViewById(R.id.text_students);
         textViewFragment.setOnClickListener(new View.OnClickListener() {
@@ -77,15 +78,23 @@ public class UserMainActivity extends AppCompatActivity {
         textViewStudents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity , StudentsListActivity.class);
+                Intent intent = new Intent(activity, StudentsListActivity.class);
                 startActivity(intent);
             }
         });
         textViewFragment.setText("Ver días de entrenamiento");
         loadFragment(Constants.KEY_FRAGMENT_PROFILE);
 
-        if(isTrainer){
+        if (isTrainer) {
             textViewStudents.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!firstTime){
+
         }
     }
 
@@ -103,22 +112,42 @@ public class UserMainActivity extends AppCompatActivity {
         }
     }
 
-    private void getDays(){
+    private void getDays() {
         final LiveData<ArrayList<Days>> result = viewModel.getDays();
         result.observe(UserMainActivity.this, new Observer<ArrayList<Days>>() {
 
             @Override
             public void onChanged(ArrayList<Days> days) {
-       //         String title= days.get(1).getTitlo();
-       //         String id=  days.get(2).getId().toString();
-       //         String status;
-       //        status = Integer.toString( days.get(3).getStatus());
+                //         String title= days.get(1).getTitlo();
+                //         String id=  days.get(2).getId().toString();
+                //         String status;
+                //        status = Integer.toString( days.get(3).getStatus());
 
-     //           Log.e("Activity",title+ " "+ id + " " +status);
+                //           Log.e("Activity",title+ " "+ id + " " +status);
             }
         });
     }
-    public ArrayList<User> getAllUsers(){
+
+    public void initializeUsers(List<User> recievedList) {
+        userList.addAll(recievedList);
+        for (int i = 0; i < userList.size(); i++) {
+            if (mailLogged.equals(userList.get(i).getEmail())) {
+                userLogged = userList.get(i);
+                userSelected = userList.get(i);
+                if (userList.get(i).getType() == enumUser.TRAINER) {
+                    isTrainer = true;
+                } else {
+                    isTrainer = false;
+                }
+            }
+        }
+    }
+
+//    public void initializeView() {
+//        textViewStudents.setText();
+//    }
+
+    public ArrayList<User> getAllUsers() {
         return viewModel.getAllUsers();
     }
 }

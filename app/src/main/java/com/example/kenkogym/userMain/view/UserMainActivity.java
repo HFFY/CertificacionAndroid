@@ -20,24 +20,33 @@ import com.example.kenkogym.userMain.viewModel.UserMainViewModel;
 import com.example.kenkogym.utils.Constants;
 import com.example.kenkogym.utils.models.objects.Days;
 import com.example.kenkogym.utils.models.objects.User;
+import com.example.kenkogym.utils.models.types.enumUser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.kenkogym.userMain.view.ProfileFragment.textViewAge;
+import static com.example.kenkogym.userMain.view.ProfileFragment.textViewHeight;
+import static com.example.kenkogym.userMain.view.ProfileFragment.textViewHours;
+import static com.example.kenkogym.userMain.view.ProfileFragment.textViewWeight;
+
 public class UserMainActivity extends AppCompatActivity {
 
-    TextView textViewFragment,textViewStudents;
+    TextView textViewFragment, textViewStudents, textViewName;
     Boolean fragmentPosition = false; // true = Days , false = profile
     Activity activity = this;
     UserMainViewModel viewModel;
-    boolean isTrainer = false;
-
-    private List<Days> daysList= new ArrayList<>();
+    String mailLogged = "";
+    Boolean firstTime = true;
+    public static Boolean isTrainer = false;
+    public static User userLogged;
+    public static User userSelected;
+    public static List<User> userList = new ArrayList<>();
+    private List<Days> daysList = new ArrayList<>();
     private Map<String, Fragment> mapFragments = new HashMap<>();
-
-    //TODO declarar la lista estática
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +55,15 @@ public class UserMainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         Bundle args = getIntent().getExtras();
-
-        if(args != null){
-            //TODO cargar todo de acuerdo al estudiante seleccionado
-        }else{
-            //TODO llamar a la base de datos
-            //TODO una vez finalizada la llamada a la base de datos diferenciar si es o no Trainer
+        if (args != null) {
+            mailLogged = args.getString("Email");
         }
 
         viewModel = new ViewModelProvider(this).get(UserMainViewModel.class);
         initFragments();
         getDays();
 
+        textViewName = findViewById(R.id.text_name);
         textViewFragment = findViewById(R.id.text_menu);
         textViewStudents = findViewById(R.id.text_students);
         textViewFragment.setOnClickListener(new View.OnClickListener() {
@@ -78,15 +84,26 @@ public class UserMainActivity extends AppCompatActivity {
         textViewStudents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity , StudentsListActivity.class);
+                Intent intent = new Intent(activity, StudentsListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("UserList", (Serializable) userList);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
         textViewFragment.setText("Ver días de entrenamiento");
         loadFragment(Constants.KEY_FRAGMENT_PROFILE);
 
-        if(isTrainer){
-            textViewStudents.setVisibility(View.INVISIBLE);
+        getAllUsers();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(firstTime){
+            firstTime=false;
+        }else{
+            setUserSelectedData();
         }
     }
 
@@ -104,32 +121,61 @@ public class UserMainActivity extends AppCompatActivity {
         }
     }
 
-    private void getDays(){
+    private void getDays() {
         final LiveData<ArrayList<Days>> result = viewModel.getDays();
         result.observe(UserMainActivity.this, new Observer<ArrayList<Days>>() {
 
             @Override
             public void onChanged(ArrayList<Days> days) {
-       //         String title= days.get(1).getTitlo();
-       //         String id=  days.get(2).getId().toString();
-       //         String status;
-       //        status = Integer.toString( days.get(3).getStatus());
+                //         String title= days.get(1).getTitlo();
+                //         String id=  days.get(2).getId().toString();
+                //         String status;
+                //        status = Integer.toString( days.get(3).getStatus());
 
-     //           Log.e("Activity",title+ " "+ id + " " +status);
+                //           Log.e("Activity",title+ " "+ id + " " +status);
             }
         });
     }
-    public List<User> getAllUsers(){
+
+    public void initializeUsers(List<User> recievedList) {
+        userList.addAll(recievedList);
+        for (int i = 0; i < userList.size(); i++) {
+            if (mailLogged.equals(userList.get(i).getEmail())) {
+                userLogged = userList.get(i);
+                userSelected = userList.get(i);
+                if (userList.get(i).getType() == enumUser.TRAINER) {
+                    isTrainer = true;
+                } else {
+                    isTrainer = false;
+                }
+            }
+        }
+        if (isTrainer) {
+            textViewStudents.setVisibility(View.VISIBLE);
+        }else{
+            textViewStudents.setVisibility(View.INVISIBLE);
+        }
+        setUserSelectedData();
+    }
+
+    public void setUserSelectedData(){
+        textViewWeight.setText(userSelected.getWeight()+"");
+        textViewHeight.setText(userSelected.getHeigh()+"");
+        textViewAge.setText(userSelected.getAge()+"");
+        textViewHours.setText("180");
+        textViewName.setText(userSelected.getName());
+    }
+
+    public void getAllUsers(){
         final MutableLiveData<List<User>> result = new MutableLiveData<>();
         final List<User> list= new ArrayList<>();
         viewModel.getAllUsers().observeForever(new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> users) {
                 list.addAll(users);
-
+                initializeUsers(list);
             }
 
         });
-        return list;
     }
 }

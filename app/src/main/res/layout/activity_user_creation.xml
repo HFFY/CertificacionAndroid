@@ -189,7 +189,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         style="@style/textViewMini"
-                        android:text="@string/login_psswd_confir" />
+                        android:text="@string/login_user_trainer" />
 
                     <CheckBox
                         android:id="@+id/check_im_trainer"

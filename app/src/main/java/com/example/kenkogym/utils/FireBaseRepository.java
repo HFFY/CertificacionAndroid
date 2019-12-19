@@ -20,7 +20,7 @@ import java.util.List;
 public class FireBaseRepository {
     private static FireBaseRepository instance;
     private  FirebaseDatabase database;
-    private static ArrayList<User> users;
+    private static List<User> users;
 
     public static FireBaseRepository getInstance() {
         if (instance == null) {

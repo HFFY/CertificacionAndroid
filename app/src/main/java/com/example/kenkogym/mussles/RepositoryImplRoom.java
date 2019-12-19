@@ -6,7 +6,7 @@ import com.example.kenkogym.utils.models.objects.Exercise;
 
 import java.util.List;
 
-public interface RepositoryImpl {
+public interface RepositoryImplRoom {
 
     //Db
     void insert(Exercise exercise);

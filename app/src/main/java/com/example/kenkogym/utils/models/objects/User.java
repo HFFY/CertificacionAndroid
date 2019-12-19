@@ -2,15 +2,12 @@ package com.example.kenkogym.utils.models.objects;
 
 import com.example.kenkogym.utils.models.types.enumUser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-public class User {
+public class User implements Serializable {
 
-    /**
-     * Agregado
-     *          Email
-     *          ID
-     */
     private Long uId;
     private enumUser type;
     private String name;
@@ -18,44 +15,42 @@ public class User {
     private String password;
     private int image;
     private int age;
-    private int weight;
-    private int heigh;
-    private ArrayList<String> exercises;
+    private Double weight;
+    private Double heigh;
+    private List<String> exercises;
 
+    public User(enumUser type, String name, String email, String password, int age, Double weight, Double heigh, List<String> exercises) {
 
-
-    /**
-     * No seria necesario un constructor para esta clase, solo agregar la info que tenemos en el momento.
-     * En to do caso cuanto queramos recibir los objetos de la base o del mock, solo manejaremos el id del usuario, sus valores
-     * y  cambios manejamos por transaccion.
-     * <p>
-     * Puedo estar equivocado:
-     * <p>
-     * En ese caso deberiamos crear otra clase solo para el login donde tendriamos solo Email, Password que busque un id y compare
-     **/
-    public User(enumUser type, String name,String email, String password, int age, int weight, int heigh, ArrayList<String> exercises){
-
-        this.type=type;
-        this.name=name;
-        this.email=email;
-        this.password=password;
-        this.age=age;
-        this.weight=weight;
-        this.heigh=heigh;
-        this.exercises=exercises;
+        this.type = type;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.age = age;
+        this.weight = weight;
+        this.heigh = heigh;
+        this.exercises = exercises;
     }
-    public User(){
+
+    public User() {
 
     }
 
 
-    public Long getuId() {return uId;}
+    public Long getuId() {
+        return uId;
+    }
 
-    public void setuId(Long uId) {this.uId = uId;}
+    public void setuId(Long uId) {
+        this.uId = uId;
+    }
 
-    public String getEmail() {return email;}
+    public String getEmail() {
+        return email;
+    }
 
-    public void setEmail(String email) {this.email = email;}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public enumUser getType() {
         return type;
@@ -81,11 +76,11 @@ public class User {
         this.age = age;
     }
 
-    public int getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
@@ -106,19 +101,19 @@ public class User {
         this.password = password;
     }
 
-    public int getHeigh() {
+    public Double getHeigh() {
         return heigh;
     }
 
-    public void setHeigh(int heigh) {
+    public void setHeigh(Double heigh) {
         this.heigh = heigh;
     }
 
-    public ArrayList<String> getExercises() {
+    public List<String> getExercises() {
         return exercises;
     }
 
-    public void setExercises(ArrayList<String> exercises) {
+    public void setExercises(List<String> exercises) {
         this.exercises = exercises;
     }
 }

@@ -1,7 +1,13 @@
 package com.example.kenkogym.excercises.view;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -11,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kenkogym.R;
 import com.example.kenkogym.excercises.viewModel.ExcercisesViewModel;
+import com.example.kenkogym.utils.models.objects.Exercise;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +53,23 @@ public class ExcercisesActivity extends AppCompatActivity {
         adapter = new ExcercisesAdapter(activity, strings);
         recyclerView.setAdapter(adapter);
         viewModel= new ViewModelProvider(this).get(ExcercisesViewModel.class);
+
+        //Room methods
+        /*
+        viewModel = new ViewModelProvider(this).get(ExcercisesViewModel.class);
+
+        viewModel.getAllExercises().observe(this, new Observer<List<Exercise>>() {
+            @Override
+            public void onChanged(List<Exercise> exercises) {
+                Log.e("Exercises", new Gson().toJson(exercises));
+            }
+        });
+
+         */
     }
     public LiveData<List<String>> getExercises(Long id){
         return viewModel.getExercises(id);
     }
+
+
 }

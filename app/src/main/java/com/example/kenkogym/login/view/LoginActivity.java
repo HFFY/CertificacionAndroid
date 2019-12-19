@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel viewModel;
     private ProgressDialog loadingDialog;
+    String mail = "";
 
     private EditText emailEditText;
     private EditText passwordEditText;
@@ -111,7 +112,11 @@ public class LoginActivity extends AppCompatActivity {
                                             Toast.LENGTH_SHORT)
                                             .show();
 
+                                    mail = emailEditText.getText().toString();
                                     Intent intent = new Intent(context, UserMainActivity.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("Email",mail);
+                                    intent.putExtras(bundle);
                                     startActivity(intent);
 
                                 } else {

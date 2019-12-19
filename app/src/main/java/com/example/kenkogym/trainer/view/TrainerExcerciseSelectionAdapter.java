@@ -34,7 +34,7 @@ public class TrainerExcerciseSelectionAdapter extends RecyclerView.Adapter<Train
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
 //        switch (userModelList.get(position)){
 //            default:
@@ -47,10 +47,11 @@ public class TrainerExcerciseSelectionAdapter extends RecyclerView.Adapter<Train
                 if(holder.isCheced){
                     holder.isCheced = false;
                     holder.linearLayout.setBackgroundResource(0);
-                    //TODO: llamar a metodo para deseleccionar
+                    ((TrainerActivity) activity).setSelection(userModelList.get(position).getId(),false);
                 }else{
                     holder.isCheced = true;
                     holder.linearLayout.setBackgroundResource(R.drawable.btn_principal);
+                    ((TrainerActivity) activity).setSelection(userModelList.get(position).getId(),false);
                 }
             }
         });

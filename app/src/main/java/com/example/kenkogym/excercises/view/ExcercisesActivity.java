@@ -3,6 +3,8 @@ package com.example.kenkogym.excercises.view;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -20,14 +22,16 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.kenkogym.userMain.view.UserMainActivity.idUserSelected;
+
 public class ExcercisesActivity extends AppCompatActivity {
     private ExcercisesViewModel viewModel;
 
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
+    TextView textViewNoExcs;
     ExcercisesAdapter adapter;
     Activity activity = this;
-
     List<Exercise> exercisesList = new ArrayList<>();
 
     @Override
@@ -36,57 +40,54 @@ public class ExcercisesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_excercises);
 
         recyclerView = findViewById(R.id.recycler_exc);
-        viewModel= new ViewModelProvider(this).get(ExcercisesViewModel.class);
-
-        List<String> strings = new ArrayList<>();
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-
-        getExercises();
-
-        //Room methods
-        /*
+        textViewNoExcs = findViewById(R.id.text_no_excs);
         viewModel = new ViewModelProvider(this).get(ExcercisesViewModel.class);
-*/
 
-
+        getExercisesListUser();
 
     }
-//    public LiveData<List<String>> getExercises(Long id){
-//        return viewModel.getExercises(id);
-//    }
 
-    public void getExercises(){
+    public void getExercises(final List<String> ids) {
         viewModel.getAllExercises().observe(this, new Observer<List<Exercise>>() {
             @Override
             public void onChanged(List<Exercise> exercises) {
-                exercisesList=exercises;
-                Log.e("Exercises", new Gson().toJson(exercises));
-                linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-                recyclerView.setLayoutManager(linearLayoutManager);
-                adapter = new ExcercisesAdapter(activity, exercisesList);
-                recyclerView.setAdapter(adapter);
+                selectedExcs(exercises, ids);
             }
         });
     }
 
-    public LiveData<List<String>> getExercises(Long id){
-        final MutableLiveData<List<String>> result = new MutableLiveData<>();
-        viewModel.getExercises(id).observeForever(new Observer<List<String>>() {
+    public void getExercisesListUser() {
+        viewModel.getExercises(idUserSelected).observeForever(new Observer<List<String>>() {
             @Override
-            public void onChanged(List<String> strings) {
-                result.postValue(strings);
+            public void onChanged(List<String> strinasignedMusselss) {
+                getExercises(strinasignedMusselss);
             }
         });
-        return result;
-
     }
 
+    public void selectedExcs(List<Exercise> exercises, List<String> ids) {
+        if (ids == null) {
+            textViewNoExcs.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else if (ids.size() == 0) {
+            textViewNoExcs.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            textViewNoExcs.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            for(int i = 0; i < ids.size(); i++){
+                for(int j = 0; j < exercises.size() ; j++){
+                    if(ids.get(i).equals(exercises.get(j).getId())){
+                        Exercise exercise = exercises.get(j);
+                        exercisesList.add(exercise);
+                    }
+                }
+            }
+            linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+            recyclerView.setLayoutManager(linearLayoutManager);
+            adapter = new ExcercisesAdapter(activity, exercisesList);
+            recyclerView.setAdapter(adapter);
+        }
+    }
 
 }

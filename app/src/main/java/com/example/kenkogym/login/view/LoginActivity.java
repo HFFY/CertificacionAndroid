@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kenkogym.R;
 import com.example.kenkogym.login.viewModel.LoginViewModel;
+import com.example.kenkogym.mussles.viewModel.MusselsViewModel;
 import com.example.kenkogym.userCreation.view.UserCreationActivity;
 import com.example.kenkogym.userMain.view.UserMainActivity;
 import com.example.kenkogym.utils.models.Base;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private Context context;
 
     private LoginViewModel viewModel;
+    private MusselsViewModel localViewModel;
     private ProgressDialog loadingDialog;
     String mail = "";
 
@@ -52,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.e(LOG, "creado");
 
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        localViewModel = new ViewModelProvider(this).get(MusselsViewModel.class);
 
         this.context = this;
         initUI();
@@ -171,7 +174,27 @@ public class LoginActivity extends AppCompatActivity {
             SharedPreferences.Editor settingsEditor = prefs.edit();
             settingsEditor.putBoolean(SHARED_BOOL,true);
             settingsEditor.commit();
-            //TODO: Koche aquí llamas a tu método de registro de los ejercicios
+            insertToDataBase();
         }
+    }
+
+
+    private void insertToDataBase(){
+        Exercise ex1= new Exercise("1","Abdominales", enumExercise.ABS,1);
+        Exercise ex2= new Exercise("2","Flexiones", enumExercise.ABS,2);
+        Exercise ex3= new Exercise("3","Pesas", enumExercise.BICEP,3);
+        Exercise ex4= new Exercise("4","Mancuernas", enumExercise.BICEP,4);
+        Exercise ex5= new Exercise("5","Cuadriceps", enumExercise.LEGS,5);
+        Exercise ex6= new Exercise("6","Bicicleta", enumExercise.CARDIO,6);
+        Exercise ex7= new Exercise("7","Triceps", enumExercise.ARMS,7);
+        Exercise ex8= new Exercise("8","Resistencia", enumExercise.BACK,8);
+        localViewModel.registerExercise(ex1);
+        localViewModel.registerExercise(ex2);
+        localViewModel.registerExercise(ex3);
+        localViewModel.registerExercise(ex4);
+        localViewModel.registerExercise(ex5);
+        localViewModel.registerExercise(ex6);
+        localViewModel.registerExercise(ex7);
+        localViewModel.registerExercise(ex8);
     }
 }

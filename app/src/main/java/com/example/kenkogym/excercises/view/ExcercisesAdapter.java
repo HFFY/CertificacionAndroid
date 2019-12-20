@@ -35,6 +35,8 @@ public class ExcercisesAdapter extends RecyclerView.Adapter<ExcercisesAdapter.Vi
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
+        holder.textViewName.setText(userModelList.get(position).getName());
+
 //        switch (userModelList.get(position)){
 //            default:
 //                break;

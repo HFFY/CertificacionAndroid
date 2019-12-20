@@ -41,6 +41,8 @@ public class TrainerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainer);
+        getSupportActionBar().hide();
+
         viewModel = new ViewModelProvider(this).get(TrainerViewModel.class);
         buttonSave = findViewById(R.id.button_trainer_save);
         recyclerViewExc = findViewById(R.id.recycler_excercises);

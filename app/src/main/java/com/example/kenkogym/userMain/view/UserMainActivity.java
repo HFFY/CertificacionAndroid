@@ -63,6 +63,11 @@ public class UserMainActivity extends AppCompatActivity {
             mailLogged = args.getString("Email");
         }
 
+        userLogged = new User();
+        userSelected = new User();
+        userList = new ArrayList<>();
+        isTrainer = false;
+
         viewModel = new ViewModelProvider(this).get(UserMainViewModel.class);
         initFragments();
         getDays();
@@ -104,9 +109,9 @@ public class UserMainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(firstTime){
-            firstTime=false;
-        }else{
+        if (firstTime) {
+            firstTime = false;
+        } else {
             setUserSelectedData();
         }
     }
@@ -156,24 +161,24 @@ public class UserMainActivity extends AppCompatActivity {
         }
         if (isTrainer) {
             textViewStudents.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             textViewStudents.setVisibility(View.INVISIBLE);
         }
         setUserSelectedData();
     }
 
-    public void setUserSelectedData(){
-        textViewWeight.setText(userSelected.getWeight()+"");
-        textViewHeight.setText(userSelected.getHeigh()+"");
-        textViewAge.setText(userSelected.getAge()+"");
+    public void setUserSelectedData() {
+        textViewWeight.setText(userSelected.getWeight() + "");
+        textViewHeight.setText(userSelected.getHeigh() + "");
+        textViewAge.setText(userSelected.getAge() + "");
         textViewHours.setText("180");
         textViewName.setText(userSelected.getName());
         idUserSelected = userSelected.getuId();
     }
 
-    public void getAllUsers(){
+    public void getAllUsers() {
         final MutableLiveData<List<User>> result = new MutableLiveData<>();
-        final List<User> list= new ArrayList<>();
+        final List<User> list = new ArrayList<>();
         showLoading();
         viewModel.getAllUsers().observeForever(new Observer<List<User>>() {
             @Override
@@ -185,6 +190,7 @@ public class UserMainActivity extends AppCompatActivity {
 
         });
     }
+
     private void showLoading() {
         loadingDialog = new ProgressDialog(this);
         loadingDialog.setMessage("Loading");
@@ -198,7 +204,7 @@ public class UserMainActivity extends AppCompatActivity {
 
     }
 
-    private void hideLoading(){
+    private void hideLoading() {
         loadingDialog.dismiss();
 
         loadingDialog.cancel();

@@ -38,6 +38,7 @@ public class ExcercisesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_excercises);
+        getSupportActionBar().hide();
 
         recyclerView = findViewById(R.id.recycler_exc);
         textViewNoExcs = findViewById(R.id.text_no_excs);

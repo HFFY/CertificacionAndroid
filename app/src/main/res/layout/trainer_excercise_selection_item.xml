@@ -13,9 +13,8 @@
         android:id="@+id/image_trainer_exc"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/ic_profile_user"
-        android:layout_marginRight="20dp"
-        android:tint="@color/colorWhite"/>
+        android:src="@drawable/kenkoic"
+        android:layout_marginRight="20dp"/>
 
     <TextView
         android:id="@+id/text_trainer_exc"

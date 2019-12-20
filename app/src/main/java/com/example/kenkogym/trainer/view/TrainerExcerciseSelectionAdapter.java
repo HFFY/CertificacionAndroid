@@ -48,7 +48,7 @@ public class TrainerExcerciseSelectionAdapter extends RecyclerView.Adapter<Train
                 }else{
                     holder.isCheced = true;
                     holder.linearLayout.setBackgroundResource(R.drawable.btn_principal);
-                    ((TrainerActivity) activity).setSelection(userModelList.get(position).getId(),false);
+                    ((TrainerActivity) activity).setSelection(userModelList.get(position).getId(),true);
                 }
             }
         });

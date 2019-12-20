@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import com.example.kenkogym.login.FirebaseRepository;
+import com.example.kenkogym.mussles.MusselsRepository;
 import com.example.kenkogym.utils.ResponseMapper;
 import com.example.kenkogym.utils.models.Base;
 import com.example.kenkogym.utils.models.userLogged;
@@ -17,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginViewModel  extends AndroidViewModel {
 
     private FirebaseRepository repository;
+    private MusselsRepository musselsRepository;
 
     public LoginViewModel(@NonNull Application application) {
         super(application);

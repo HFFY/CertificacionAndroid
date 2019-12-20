@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">KenkoGym</string>
 
-    <string name="login_user">Usuario</string>
+    <string name="login_user">Registro de Usuario</string>
+    <string name="login_user_name">Nombre</string>
+    <string name="login_user_weight">Peso (Kg)</string>
+    <string name="login_user_height">Altura (m)</string>
+    <string name="login_user_age">Edad</string>
+    <string name="login_user_trainer">Soy entrenador</string>
     <string name="login_email">Correo Electrónico</string>
     <string name="login_psswd">Contraseña</string>
     <string name="login_psswd_confir">Confirme Contraseña</string>
@@ -22,5 +27,7 @@
 
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
 
+    <string name="trainer_save">Guardar ejercicios</string>
+    <string name="trainer_dont">No tienes ejercicios asignados</string>
 
 </resources>

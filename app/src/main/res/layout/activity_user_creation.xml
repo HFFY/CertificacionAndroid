@@ -4,112 +4,213 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
     android:orientation="vertical"
     android:background="@color/colorAccent"
     tools:context=".userCreation.view.UserCreationActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        style="@style/textViewMini"
-        android:text="@string/login_user" />
-
-    <EditText
-        android:id="@+id/edit_creation_user"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:ems="10"
-        android:hint="@string/login_user"
-        style="@style/editTextContainer"
-        android:inputType="text" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="25dp"
-        style="@style/textViewMini"
-        android:text="@string/login_email" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edit_creation_email"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:ems="10"
-        android:hint="@string/login_email"
-        style="@style/editTextContainer"
-        android:inputType="textEmailAddress" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/kenkobanner"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="25dp"
-        style="@style/textViewMini"
-        android:text="@string/login_psswd" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="25dp"
+                style="@style/textViewBigTitle"
+                android:text="@string/login_user" />
 
-    <EditText
-        android:id="@+id/edit_creation_password"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:ems="10"
-        android:hint="@string/login_psswd"
-        style="@style/editTextContainer"
-        android:inputType="textPassword" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="25dp"
+                style="@style/textViewMini"
+                android:text="@string/login_user_name" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="25dp"
-        style="@style/textViewMini"
-        android:text="@string/login_psswd_confir" />
+            <EditText
+                android:id="@+id/edit_creation_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:ems="10"
+                android:hint="@string/login_user_name"
+                style="@style/editTextContainer"
+                android:inputType="text" />
 
-    <EditText
-        android:id="@+id/edit_creation_password_confirmation"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:ems="10"
-        android:hint="@string/login_psswd_confir"
-        style="@style/editTextContainer"
-        android:inputType="textPassword" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                style="@style/textViewMini"
+                android:text="@string/login_user_weight" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:orientation="horizontal"
-        android:weightSum="3">
+            <EditText
+                android:id="@+id/edit_user_weight"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:ems="10"
+                android:hint="@string/login_user_weight"
+                style="@style/editTextContainer"
+                android:inputType="numberDecimal" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="start"
-            android:text="TextView"
-            android:visibility="invisible" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                style="@style/textViewMini"
+                android:text="@string/login_user_height" />
 
-        <Button
-            android:id="@+id/button_creation_send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_principal"
-            android:layout_weight="1"
-            android:textColor="@color/colorWhite"
-            android:text="@string/login_register" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/edit_user_height"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:ems="10"
+                android:hint="@string/login_user_height"
+                style="@style/editTextContainer"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                style="@style/textViewMini"
+                android:text="@string/login_user_age" />
+
+            <EditText
+                android:id="@+id/edit_user_age"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:ems="10"
+                android:hint="@string/login_user_age"
+                style="@style/editTextContainer"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                style="@style/textViewMini"
+                android:text="@string/login_email" />
+
+            <EditText
+                android:id="@+id/edit_creation_email"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:ems="10"
+                android:hint="@string/login_email"
+                style="@style/editTextContainer"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                style="@style/textViewMini"
+                android:text="@string/login_psswd" />
+
+            <EditText
+                android:id="@+id/edit_creation_password"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:ems="10"
+                android:hint="@string/login_psswd"
+                style="@style/editTextContainer"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                style="@style/textViewMini"
+                android:text="@string/login_psswd_confir" />
+
+            <EditText
+                android:id="@+id/edit_creation_password_confirmation"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:ems="10"
+                android:hint="@string/login_psswd_confir"
+                style="@style/editTextContainer"
+                android:inputType="textPassword" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        style="@style/textViewMini"
+                        android:text="@string/login_user_trainer" />
+
+                    <CheckBox
+                        android:id="@+id/check_im_trainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button_creation_send"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="80dp"
+                    android:background="@drawable/btn_principal"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorWhite"
+                    android:text="@string/login_register" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

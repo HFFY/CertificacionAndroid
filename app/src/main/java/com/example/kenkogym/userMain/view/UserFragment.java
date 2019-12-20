@@ -9,8 +9,11 @@ import android.widget.LinearLayout;
 
 import com.example.kenkogym.R;
 import com.example.kenkogym.excercises.view.ExcercisesActivity;
+import com.example.kenkogym.trainer.view.TrainerActivity;
 
 import androidx.fragment.app.Fragment;
+
+import static com.example.kenkogym.userMain.view.UserMainActivity.isTrainer;
 
 public class UserFragment extends Fragment implements View.OnClickListener {
 
@@ -52,7 +55,12 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             case R.id.linear_friday:
             case R.id.linear_saturday:
             case R.id.linear_sunday:
-                Intent intent = new Intent(getActivity() , ExcercisesActivity.class);
+                Intent intent;
+                if(isTrainer){
+                    intent = new Intent(getActivity() , TrainerActivity.class);
+                }else{
+                    intent = new Intent(getActivity() , ExcercisesActivity.class);
+                }
                 startActivity(intent);
                 break;
             default:

@@ -3,9 +3,11 @@ package com.example.kenkogym.login.view;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,26 +20,30 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kenkogym.R;
 import com.example.kenkogym.login.viewModel.LoginViewModel;
-import com.example.kenkogym.studentsList.view.StudentsListActivity;
+import com.example.kenkogym.mussles.viewModel.MusselsViewModel;
 import com.example.kenkogym.userCreation.view.UserCreationActivity;
 import com.example.kenkogym.userMain.view.UserMainActivity;
 import com.example.kenkogym.utils.models.Base;
+import com.example.kenkogym.utils.models.objects.Exercise;
+import com.example.kenkogym.utils.models.types.enumExercise;
 import com.example.kenkogym.utils.models.userLogged;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String LOG = LoginActivity.class.getSimpleName();
-
+    private static final String SHARED = "SharedKenko";
+    private static final String SHARED_BOOL = "SharedKenkoBool";
     private Context context;
 
     private LoginViewModel viewModel;
+    private MusselsViewModel localViewModel;
     private ProgressDialog loadingDialog;
+    String mail = "";
 
     private EditText emailEditText;
     private EditText passwordEditText;
     private TextView registerText;
     private Button sendButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +52,9 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         Log.e(LOG, "creado");
+
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        localViewModel = new ViewModelProvider(this).get(MusselsViewModel.class);
 
         this.context = this;
         initUI();
@@ -60,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT) //Duración
                     .show();
         }
+
+        checkSharedPreferences();
     }
 
     private void initUI() {
@@ -112,7 +122,11 @@ public class LoginActivity extends AppCompatActivity {
                                             Toast.LENGTH_SHORT)
                                             .show();
 
+                                    mail = emailEditText.getText().toString();
                                     Intent intent = new Intent(context, UserMainActivity.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("Email",mail);
+                                    intent.putExtras(bundle);
                                     startActivity(intent);
 
                                 } else {
@@ -137,14 +151,30 @@ public class LoginActivity extends AppCompatActivity {
     private void showLoading() {
         loadingDialog = new ProgressDialog(context);
         loadingDialog.setMessage("Loading");
+
         loadingDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        loadingDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        registerText.setEnabled(false);
         loadingDialog.setMax(100);
         loadingDialog.setProgress(0);
         loadingDialog.show();
+
     }
 
     private void hideLoading(){
         loadingDialog.dismiss();
+        registerText.setEnabled(true);
         loadingDialog.cancel();
+    }
+
+    private void checkSharedPreferences(){
+        SharedPreferences prefs = getSharedPreferences(SHARED, MODE_PRIVATE);
+        Boolean hasShared = prefs.getBoolean(SHARED_BOOL,false);
+        if(!hasShared){
+            SharedPreferences.Editor settingsEditor = prefs.edit();
+            settingsEditor.putBoolean(SHARED_BOOL,true);
+            settingsEditor.commit();
+            localViewModel.registerExercise();
+        }
     }
 }

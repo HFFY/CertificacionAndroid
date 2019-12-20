@@ -12,8 +12,6 @@ import com.example.kenkogym.utils.models.objects.User;
 import com.example.kenkogym.utils.models.userLogged;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.ArrayList;
-
 public class UserCreationViewModel extends ViewModel {
 
     private UserCreationRepository repository;
@@ -21,7 +19,7 @@ public class UserCreationViewModel extends ViewModel {
     public UserCreationViewModel() {repository = UserCreationRepository.getInstance();}
 
 
-    public LiveData<Base> createUser(String user, String email, String passwod){
+    public LiveData<Base> createUser(String email, String passwod){
         final MutableLiveData<Base> result = new MutableLiveData<>();
 
         repository.register(email, passwod).observeForever(new Observer<Base>() {
@@ -39,6 +37,10 @@ public class UserCreationViewModel extends ViewModel {
 
         return result;
 
+    }
+
+    public void insertUser(User user){
+        repository.insertUser(user);
     }
 
 }

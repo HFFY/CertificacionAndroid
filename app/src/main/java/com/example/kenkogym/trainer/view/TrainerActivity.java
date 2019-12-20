@@ -51,6 +51,7 @@ public class TrainerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 viewModel.setExercises(selectedExc,idUserSelected);
+                onBackPressed();
             }
         });
 
